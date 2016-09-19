@@ -1,0 +1,33 @@
+{
+  "name": "ckeditor-plugin-autoid-headings",
+  "version": "1.0.0",
+  "description": "CKEditor autoid headings plugin",
+  "main": " ",
+  "scripts": {
+    "test": "bender run -l && bender run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PolicyStat/ckeditor-plugin-autoid-headings.git"
+  },
+  "keywords": [
+    "ckeditor",
+    "plugin",
+    "tables"
+  ],
+  "author": "PolicyStat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PolicyStat/ckeditor-plugin-autoid-headings/issues"
+  },
+  "homepage": "https://github.com/PolicyStat/ckeditor-plugin-autoid-headings#readme",
+  "devDependencies": {
+    "benderjs": "^0.4.1",
+    "benderjs-ckeditor": "^0.1.0",
+    "benderjs-cli": "^0.1.1",
+    "benderjs-jquery": "^0.3.0",
+    "benderjs-sinon": "^0.3.1",
+    "benderjs-yui": "^0.3.3",
+    "ckeditor": "4.5.10"
+  }
+}
