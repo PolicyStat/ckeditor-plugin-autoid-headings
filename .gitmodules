@@ -1,0 +1,4 @@
+[submodule "ckeditor"]
+	path = ckeditor
+	url = git://github.com/ckeditor/ckeditor-dev.git
+	branch = release/4.5.x
