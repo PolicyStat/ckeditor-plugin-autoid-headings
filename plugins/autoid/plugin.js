@@ -31,7 +31,7 @@
 				editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_ON);
 				commandIsActive = true;
 
-				addAllAnchors();
+				addAllIds();
 			}
 
 			function stop() {
