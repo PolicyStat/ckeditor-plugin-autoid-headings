@@ -27,6 +27,12 @@
 				editorFocus: true
 			});
 
+			editor.on("instanceReady", function () {
+				if (self.settings.autostart !== false) {
+					start()
+				}
+			});
+
 			function start() {
 				editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_ON);
 				commandIsActive = true;
