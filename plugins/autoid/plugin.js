@@ -44,7 +44,7 @@
 					i, heading;
 
 				for (i = 0; i < headings.length; i++) {
-					heading = headings[i];
+					heading = headings.getItem(i);
 					if (heading.hasAttribute('id')) {
 						continue;
 					}
