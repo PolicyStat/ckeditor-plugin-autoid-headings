@@ -43,7 +43,7 @@ var config = {
     ],
 
     tests: {
-        detabler: {
+        autoid: {
             applications: ['ckeditor'],
             basePath: 'tests/',
             paths: [
