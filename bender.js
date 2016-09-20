@@ -48,7 +48,8 @@ var config = {
             basePath: 'tests/',
             paths: [
                 'smoke/**',
-                '!**/_*/**'
+                '!**/_*/**',
+                'ids/**'
             ],
             // Latest of the old API (1.8.3)
             // Latest of the 1.* branch
