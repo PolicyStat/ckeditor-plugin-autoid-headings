@@ -51,6 +51,17 @@
 					addId(heading);
 				}
 			}
+
+			function findAllHeadings() {
+				return editor.document.find('h1, h2, h3, h4, h5, h6');
+			}
+
+			function addId(heading) {
+				var uuid = generateUuid();
+
+				heading.setAttributes({ id: uuid });
+			}
+
 		}
 	});
 })();
