@@ -27,6 +27,18 @@
 				editorFocus: true
 			});
 
+			function start() {
+				editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_ON);
+				commandIsActive = true;
+
+				addAllAnchors();
+			}
+
+			function stop() {
+				editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_OFF);
+				commandIsActive = false;
+			}
+
 		}
 	});
 })();
