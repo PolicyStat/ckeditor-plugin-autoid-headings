@@ -49,7 +49,7 @@
 				var headings = findAllHeadings(),
 					i, heading;
 
-				for (i = 0; i < headings.length; i++) {
+				for (i = 0; i < headings.count(); i++) {
 					heading = headings.getItem(i);
 					if (heading.hasAttribute('id')) {
 						continue;
