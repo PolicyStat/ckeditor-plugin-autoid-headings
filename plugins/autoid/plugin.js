@@ -39,6 +39,18 @@
 				commandIsActive = false;
 			}
 
+			function addAllIds() {
+				var headings = findAllHeadings(),
+					i, heading;
+
+				for (i = 0; i < headings.length; i++) {
+					heading = headings[i];
+					if (heading.hasAttribute('id')) {
+						continue;
+					}
+					addId(heading);
+				}
+			}
 		}
 	});
 })();
