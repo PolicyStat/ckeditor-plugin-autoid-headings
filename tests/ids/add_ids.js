@@ -4,9 +4,9 @@
 'use strict';
 
 bender.editor = {
-	config: {
-		enterMode: CKEDITOR.ENTER_P
-	}
+  config: {
+    enterMode: CKEDITOR.ENTER_P
+  }
 };
 
 bender.test({
@@ -25,16 +25,16 @@ bender.test({
 
     assert.isTrue(heading.hasAttribute('id'));
   },
-	
-	'test it does not change the id of a heading that already has one': function() {
-		var bot = this.editorBot,
-			heading,
-			startHtml = '<h1 id="12345">Heading with id</h1>';
 
-		bot.setHtmlWithSelection(startHtml);
+  'test it does not change the id of a heading that already has one': function() {
+    var bot = this.editorBot,
+      heading,
+      startHtml = '<h1 id="12345">Heading with id</h1>';
 
-		heading = this.editor.editable().findOne('h1');
+    bot.setHtmlWithSelection(startHtml);
 
-		assert.isEqual(heading.getId(), '12345');
-	}
+    heading = this.editor.editable().findOne('h1');
+
+    assert.isEqual(heading.getId(), '12345');
+  }
 });
