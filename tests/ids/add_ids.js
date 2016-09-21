@@ -36,7 +36,7 @@
 
       heading = this.editor.editable().findOne('h1');
 
-      assert.isEqual(heading.getId(), '12345');
+      assert.areSame(heading.getId(), '12345');
     }
   });
 })();
