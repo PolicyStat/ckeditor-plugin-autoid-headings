@@ -3,6 +3,9 @@
 (function () {
   var editorHasFocus = false;
   var commandIsActive = false;
+  var EVENT_NAMES = {
+    ALL_IDS_COMPLETE: 'allIdsComplete'
+  };
 
   CKEDITOR.plugins.add('autoid', {
     init: function (editor) {
@@ -56,6 +59,7 @@
           }
           addId(heading);
         }
+        editor.fire(EVENT_NAMES.ALL_IDS_COMPLETE);
       }
 
       function findAllHeadings() {
