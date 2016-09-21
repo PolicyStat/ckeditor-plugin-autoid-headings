@@ -11,6 +11,10 @@
     init: function (editor) {
       var self = this;
 
+      editor.addFeature({
+        allowedContent: 'h1 h2 h3 h4 h5 h6; *[id]'
+      })
+
       if (editor && !editor.config.autoid) {
         editor.config.autoid = {};
       }
@@ -20,8 +24,6 @@
       }
 
       editor.addCommand('autoid', {
-        requiredContent: 'h1',
-        allowedContent: 'h1[id]',
         exec: function (editor) {
           if (!commandIsActive) {
             start();
