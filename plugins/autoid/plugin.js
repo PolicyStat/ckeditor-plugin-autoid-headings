@@ -12,7 +12,7 @@
       var self = this;
 
       editor.addFeature({
-        allowedContent: 'h1 h2 h3 h4 h5 h6; *[id]'
+        allowedContent: 'h1 h2 h3 h4 h5 h6 *[id]'
       });
 
       if (editor && !editor.config.autoid) {
