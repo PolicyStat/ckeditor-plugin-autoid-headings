@@ -33,7 +33,7 @@
       });
 
       editor.on("instanceReady", function () {
-        if (self.settings.autostart !== false) {
+        if (self.settings.autostart) {
           start()
         }
       });
