@@ -59,6 +59,29 @@
       editor.execCommand('autoid');
 
       wait();
+    },
+
+    'test it will add an id to a new heading': function() {
+      var bot = this.editorBot,
+        editor = this.editor,
+        heading,
+        resumeAfter = bender.tools.resumeAfter,
+        startHtml = '<h1>This is a heading</h1>';
+
+      bot.setHtmlWithSelection(startHtml);
+      editor.execCommand('autoid');
+
+      var newHeading = editor.document.createElement('h2');
+
+      resumeAfter(editor, 'idAdded', function() {
+        heading = editor.editable().findOne('h2');
+        assert.isTrue(heading.hasAttribute('id'));
+      });
+
+      editor.insertElement(newHeading);
+      editor.getSelection().selectElement(newHeading);
+
+      wait();
     }
   });
 })();
