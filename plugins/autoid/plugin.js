@@ -4,7 +4,8 @@
   var editorHasFocus = false;
   var commandIsActive = false;
   var EVENT_NAMES = {
-    ALL_IDS_COMPLETE: 'allIdsComplete'
+    ALL_IDS_COMPLETE: 'allIdsComplete',
+    ID_ADDED: 'idAdded'
   };
 
   CKEDITOR.plugins.add('autoid', {
@@ -75,6 +76,7 @@
       function addId(heading) {
         var uuid = CKEDITOR.tools.getUniqueId();
         heading.setAttributes({ id: uuid });
+        editor.fire(EVENT_NAMES.ID_ADDED);
       }
 
       function addIdIfNewHeading() {
