@@ -26,8 +26,6 @@
         resumeAfter = bender.tools.resumeAfter,
         startHtml = '<h1>This is a heading</h1>';
 
-
-
       resumeAfter(editor, 'allIdsComplete', function() {
         heading = editor.editable().findOne('h1');
 
