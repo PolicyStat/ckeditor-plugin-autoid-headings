@@ -6,7 +6,10 @@
 (function() {
   bender.editor = {
     config: {
-      enterMode: CKEDITOR.ENTER_P
+      enterMode: CKEDITOR.ENTER_P,
+      autoid: {
+        autostart: false
+      }
     }
   };
 
