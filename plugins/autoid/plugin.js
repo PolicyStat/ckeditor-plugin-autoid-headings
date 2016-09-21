@@ -20,6 +20,8 @@
       }
 
       editor.addCommand('autoid', {
+        requiredContent: 'h1',
+        allowedContent: 'h1[id]',
         exec: function (editor) {
           if (!commandIsActive) {
             start();
