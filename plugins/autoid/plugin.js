@@ -40,6 +40,8 @@
         }
       });
 
+      editor.on('selectionChange', addIdIfNewHeading);
+
       function start() {
         editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_ON);
         commandIsActive = true;
@@ -73,6 +75,17 @@
       function addId(heading) {
         var uuid = CKEDITOR.tools.getUniqueId();
         heading.setAttributes({ id: uuid });
+      }
+
+      function addIdIfNewHeading() {
+        var element = editor.getSelection().getStartElement();
+        if (isHeading(element) && !element.hasAttribute('id')) {
+          addId(element);
+        }
+      }
+
+      function isHeading(element) {
+        return element.is('h1', 'h2', 'h3', 'h4', 'h5', 'h6');
       }
 
     }
