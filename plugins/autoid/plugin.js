@@ -105,6 +105,22 @@
         return element.is('h1', 'h2', 'h3', 'h4', 'h5', 'h6');
       }
 
+      function checkPastedContentForHeadings(ev) {
+        var pastedContent = ev.data.dataValue,
+          pastedContentAsHtml = CKEDITOR.htmlParser.fragment.fromHtml(pastedContent),
+          pastedElements = pastedContentAsHtml.children,
+          i, element, id, originalHeading;
+
+        for (i = 0; i < pastedElements.length; i++) {
+          element = pastedElements[i];
+          id = element.attributes.id;
+          originalHeading = checkForDuplicateId(id);
+          if (originalHeading) {
+            element = resolveDuplicateIds(element, originalHeading);
+          }
+        }
+      }
+
     }
   });
 })();
