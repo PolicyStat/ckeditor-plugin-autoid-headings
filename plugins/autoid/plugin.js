@@ -59,7 +59,7 @@
 
       function addAllIds() {
         var headings = findAllHeadings(),
-        i, heading;
+          i, heading;
 
         for (i = 0; i < headings.count(); i++) {
           heading = headings.getItem(i);
