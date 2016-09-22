@@ -109,6 +109,7 @@
         var pastedContent = ev.data.dataValue,
           pastedContentAsHtml = CKEDITOR.htmlParser.fragment.fromHtml(pastedContent),
           pastedElements = pastedContentAsHtml.children,
+          writer = new CKEDITOR.htmlParser.basicWriter(),
           i, element, id, originalHeading;
 
         for (i = 0; i < pastedElements.length; i++) {
@@ -119,6 +120,9 @@
             element = resolveDuplicateIds(element, originalHeading);
           }
         }
+        
+        pastedContentAsHtml.writeHtml(writer);
+        ev.data.dataValue = writer.getHtml();
       }
 
       function checkForDuplicateId(id) {
