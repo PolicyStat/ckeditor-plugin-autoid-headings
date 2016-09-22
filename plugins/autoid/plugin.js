@@ -133,6 +133,19 @@
         }
       }
 
+      function resolveDuplicateIds(newHeading, originalHeading) {
+        var newHeadingText = newHeading.children[0].value,
+          originalHeadingText = originalHeading.getText();
+
+        // if the text is identical (full copy), the original should retain its
+        // id and the new heading should get a new one.
+        if (newHeadingText === originalHeadingText) {
+          newHeading.attributes.id = CKEDITOR.tools.getUniqueId();
+          return newHeading;
+        }
+
+      }
+
     }
   });
 })();
