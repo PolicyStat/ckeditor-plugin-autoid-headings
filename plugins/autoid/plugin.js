@@ -75,6 +75,19 @@
         return editor.document.find('h1, h2, h3, h4, h5, h6');
       }
 
+      function findHeadingIds(headings) {
+        var ids = [],
+          i, heading, id;
+
+        for (i = 0; i < headings.count(); i++) {
+          heading = headings.getItem(i);
+          if (id = heading.getAttribute('id')) {
+            ids.push(id)
+          }
+        }
+        return ids;
+      }
+
       function addId(heading) {
         var uuid = CKEDITOR.tools.getUniqueId();
         heading.setAttributes({ id: uuid });
