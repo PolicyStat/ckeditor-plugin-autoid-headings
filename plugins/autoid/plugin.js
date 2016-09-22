@@ -12,6 +12,8 @@
     init: function (editor) {
       var self = this;
 
+      // This configures the Advanced Content Filter to allow all headings
+      // to have id attributes
       editor.addFeature({
         allowedContent: 'h1 h2 h3 h4 h5 h6 *[id]'
       });
