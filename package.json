@@ -4,7 +4,7 @@
   "description": "CKEditor autoid headings plugin",
   "main": " ",
   "scripts": {
-    "test": "bender run -l && bender run -b chromium"
+    "test": "bender run -l && bender run -b firefox"
   },
   "repository": {
     "type": "git",
