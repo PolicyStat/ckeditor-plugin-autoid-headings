@@ -26,32 +26,21 @@
 
       editor.addCommand('autoid', {
         exec: function (editor) {
-          if (CKEDITOR.TRISTATE_OFF) {
-            start();
-          } else {
-            stop();
-          }
+          editor.getCommand('autoid').toggleState();
+          if (CKEDITOR.TRISTATE_ON)
+            addAllIds();
         },
         editorFocus: true
       });
 
       editor.on("instanceReady", function () {
         if (self.settings.autostart !== false) {
-          start()
+          editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_ON);
+          addAllIds();
         }
       });
 
       editor.on('selectionChange', addIdIfNewHeading);
-
-      function start() {
-        editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_ON);
-
-        addAllIds();
-      }
-
-      function stop() {
-        editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_OFF);
-      }
 
       function addAllIds() {
         var headings = findAllHeadings(),
