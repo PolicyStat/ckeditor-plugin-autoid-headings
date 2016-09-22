@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var editorHasFocus = false;
-  var commandIsActive = false;
   var EVENT_NAMES = {
     ALL_IDS_COMPLETE: 'allIdsComplete',
     ID_ADDED: 'idAdded'
@@ -28,7 +26,7 @@
 
       editor.addCommand('autoid', {
         exec: function (editor) {
-          if (!commandIsActive) {
+          if (CKEDITOR.TRISTATE_OFF) {
             start();
           } else {
             stop();
@@ -47,14 +45,12 @@
 
       function start() {
         editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_ON);
-        commandIsActive = true;
 
         addAllIds();
       }
 
       function stop() {
         editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_OFF);
-        commandIsActive = false;
       }
 
       function addAllIds() {
