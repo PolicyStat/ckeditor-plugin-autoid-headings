@@ -43,6 +43,8 @@
 
       editor.on('selectionChange', addIdIfNewHeading);
 
+      editor.on('paste', checkPastedContentForHeadings);
+
       function start() {
         editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_ON);
         commandIsActive = true;
