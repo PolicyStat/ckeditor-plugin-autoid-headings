@@ -121,6 +121,18 @@
         }
       }
 
+      function checkForDuplicateId(id) {
+        var headingIds = findHeadingIds(findAllHeadings()),
+          i, headingId, originalHeading;
+
+        for (i = 0; i < headingIds.length; i++) {
+          headingId = headingIds[i];
+          if (id === headingId) {
+            return originalHeading = editor.document.getById(headingId);
+          }
+        }
+      }
+
     }
   });
 })();
