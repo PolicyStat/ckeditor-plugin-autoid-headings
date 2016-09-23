@@ -49,6 +49,7 @@ var config = {
             paths: [
                 'smoke/**',
                 'ids/**',
+                'paste_events/**',
                 '!**/_*/**',
 
             ],
