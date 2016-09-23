@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var editorHasFocus = false;
-  var commandIsActive = false;
   var EVENT_NAMES = {
     ALL_IDS_COMPLETE: 'allIdsComplete',
     ID_ADDED: 'idAdded'
@@ -12,6 +10,8 @@
     init: function (editor) {
       var self = this;
 
+      // This configures the Advanced Content Filter to allow all headings
+      // to have id attributes
       editor.addFeature({
         allowedContent: 'h1 h2 h3 h4 h5 h6 *[id]'
       });
@@ -26,36 +26,24 @@
 
       editor.addCommand('autoid', {
         exec: function (editor) {
-          if (!commandIsActive) {
-            start();
-          } else {
-            stop();
-          }
+          var autoId = editor.getCommand('autoid');
+          autoId.toggleState();
+          if (autoId.state === CKEDITOR.TRISTATE_ON)
+            addAllIds();
         },
         editorFocus: true
       });
 
       editor.on("instanceReady", function () {
         if (self.settings.autostart !== false) {
-          start()
+          editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_ON);
+          addAllIds();
         }
       });
 
       editor.on('selectionChange', addIdIfNewHeading);
 
       editor.on('paste', checkPastedContentForHeadings);
-
-      function start() {
-        editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_ON);
-        commandIsActive = true;
-
-        addAllIds();
-      }
-
-      function stop() {
-        editor.getCommand('autoid').setState(CKEDITOR.TRISTATE_OFF);
-        commandIsActive = false;
-      }
 
       function addAllIds() {
         var headings = findAllHeadings(),
@@ -120,7 +108,7 @@
             element = resolveDuplicateIds(element, originalHeading);
           }
         }
-        
+
         pastedContentAsHtml.writeHtml(writer);
         ev.data.dataValue = writer.getHtml();
       }

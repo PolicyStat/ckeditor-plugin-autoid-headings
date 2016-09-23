@@ -82,6 +82,33 @@
       editor.getSelection().selectElement(newHeading);
 
       wait();
+    },
+
+    'test it will add an id when a paragraph is converted to heading': function() {
+      var bot = this.editorBot,
+        editor = this.editor,
+        paragraph,
+        heading,
+        style = new CKEDITOR.style({ element: 'h1' }),
+        resumeAfter = bender.tools.resumeAfter,
+        startHtml = '<p>This paragraph will be converted^</p>';
+
+      bot.setHtmlWithSelection(startHtml);
+      editor.execCommand('autoid');
+
+      paragraph = editor.editable().findOne('p');
+      assert.isFalse(paragraph.hasAttribute('id'));
+
+      resumeAfter(editor, 'idAdded', function() {
+        heading = editor.editable().findOne('h1');
+
+        assert.isTrue(heading.hasAttribute('id'));
+      });
+
+      // convert the paragraph to a heading
+      editor.applyStyle(style);
+
+      wait();
     }
   });
 })();
