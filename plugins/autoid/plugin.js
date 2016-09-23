@@ -133,6 +133,7 @@
         // id and the new heading should get a new one.
         if (newHeadingText === originalHeadingText) {
           newHeading.attributes.id = CKEDITOR.tools.getUniqueId();
+          editor.fire(EVENT_NAMES.ID_ADDED);
           return newHeading;
         }
 
