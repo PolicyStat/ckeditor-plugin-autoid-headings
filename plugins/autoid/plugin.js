@@ -26,8 +26,9 @@
 
       editor.addCommand('autoid', {
         exec: function (editor) {
-          editor.getCommand('autoid').toggleState();
-          if (CKEDITOR.TRISTATE_ON)
+          var autoId = editor.getCommand('autoid');
+          autoId.toggleState();
+          if (autoId.state === CKEDITOR.TRISTATE_ON)
             addAllIds();
         },
         editorFocus: true
