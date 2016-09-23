@@ -32,14 +32,34 @@
 
       bot.setHtmlWithSelection(headingWithId);
 
+      // hit enter key to prevent pasting text in same heading element
+      editor.editable().fire('keydown', new CKEDITOR.dom.event({
+        keyCode: 13,
+        ctrlKey: false,
+        shiftKey: false
+      }));
+
+      resumeAfter(editor, 'allIdsComplete', function() {
+        heading = editor.editable().findOne('h1');
+
+        // verify original heading still has same id
+        assert.areSame('12345', heading.getAttribute('id'));
+
+        editor.execCommand('paste', headingWithDifferentId);
+
+        headings = editor.editable().find('h1');
+
+        // get pasted heading (second heading on page)
+        heading = headings.getItem(1);
+
+        // verify pasted heading still has the original id
+        assert.areSame('678910', heading.getAttribute('id'));
+      });
+
       editor.execCommand('autoid');
 
-      editor.execCommand('paste', headingWithDifferentId);
-
-      headings = editor.editable().find('h1');
-      heading = headings.getItem(1);
-
-      assert.areSame('678910', heading.getAttribute('id'));
+      // wait for initial id assignment for all headings to complete
+      wait();
     },
 
     'test pasted heading gets new id when it is a full copy of an existing heading': function() {
@@ -55,10 +75,10 @@
 
       // hit enter key to prevent pasting text in same heading element
       editor.editable().fire('keydown', new CKEDITOR.dom.event({
-						keyCode: 13,
-						ctrlKey: false,
-						shiftKey: false
-					}));
+        keyCode: 13,
+        ctrlKey: false,
+        shiftKey: false
+      }));
 
       resumeAfter(editor, 'allIdsComplete', function() {
         heading = editor.editable().findOne('h1');
