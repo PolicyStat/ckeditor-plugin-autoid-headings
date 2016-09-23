@@ -43,12 +43,14 @@ var config = {
     ],
 
     tests: {
-        detabler: {
+        autoid: {
             applications: ['ckeditor'],
             basePath: 'tests/',
             paths: [
                 'smoke/**',
-                '!**/_*/**'
+                'ids/**',
+                '!**/_*/**',
+
             ],
             // Latest of the old API (1.8.3)
             // Latest of the 1.* branch
