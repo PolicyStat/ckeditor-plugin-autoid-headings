@@ -3,7 +3,8 @@
 (function () {
   var EVENT_NAMES = {
     ALL_IDS_COMPLETE: 'allIdsComplete',
-    ID_ADDED: 'idAdded'
+    ID_ADDED: 'idAdded',
+    ID_RETAINED: 'idRetained'
   };
 
   CKEDITOR.plugins.add('autoid', {
@@ -128,6 +129,15 @@
       function resolveDuplicateIds(newHeading, originalHeading) {
         var newHeadingText = newHeading.children[0].value,
           originalHeadingText = originalHeading.getText();
+
+        // if the original heading has no content (blank or just a line-feed
+        // character is left when all the content is cut), the original heading
+        // will be removed and the new heading will retain the id
+        if ( !originalHeadingText || (originalHeadingText.length === 1 && originalHeadingText.charCodeAt(0) === 10)) {
+          originalHeading.remove();
+          editor.fire(EVENT_NAMES.ID_RETAINED);
+          return newHeading;
+        }
 
         // if the text is identical (full copy), the original should retain its
         // id and the new heading should get a new one.
