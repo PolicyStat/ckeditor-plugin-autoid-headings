@@ -105,6 +105,48 @@
 
       // wait for initial id assignment for all headings to complete
       wait();
+    },
+
+    'test full cut and paste removes blank heading and original id retained': function() {
+      var bot = this.editorBot,
+        editor = bot.editor,
+        heading,
+        headings,
+        resumeAfter = bender.tools.resumeAfter;
+
+      // when the full content of a heading is cut, the element tag is left
+      var startHtml = '<h1 id="12345"></h1>',
+        secondHeading = '<h1 id="12345">Pasted Heading</h1>';
+
+      bot.setHtmlWithSelection(startHtml);
+
+      editor.editable().fire('keydown', new CKEDITOR.dom.event({
+        keyCode: 13,
+        ctrlKey: false,
+        shiftKey: false
+      }));
+
+      resumeAfter(editor, 'allIdsComplete', function() {
+
+        resumeAfter(editor, 'idRetained', function() {
+          headings = editor.editable().find('h1');
+
+          heading = headings.getItem(0);
+
+          // verify only one heading on page (original was deleted)
+          assert.areSame(headings.count(), 1);
+          // verify the pasted heading retains original id
+          assert.areSame('12345', heading.getAttribute('id'));
+        });
+
+        editor.execCommand('paste', secondHeading);
+
+        wait();
+      });
+
+      editor.execCommand('autoid');
+
+      wait();
     }
 
   });
