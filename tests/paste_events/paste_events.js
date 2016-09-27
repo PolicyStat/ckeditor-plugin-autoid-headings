@@ -39,6 +39,8 @@
         shiftKey: false
       }));
 
+      console.log(editor.getData());
+
       resumeAfter(editor, 'allIdsComplete', function() {
         heading = editor.editable().findOne('h1');
 
@@ -135,8 +137,9 @@
 
           // verify only one heading on page (original was deleted)
           assert.areSame(headings.count(), 1);
-          // verify the pasted heading retains original id
+          // verify the pasted heading retains original id and pasted content
           assert.areSame('12345', heading.getAttribute('id'));
+          assert.areSame('Pasted Heading', heading.getText());
         });
 
         editor.execCommand('paste', secondHeading);
