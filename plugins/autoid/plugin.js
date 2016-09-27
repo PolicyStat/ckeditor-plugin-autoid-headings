@@ -133,7 +133,7 @@
         // if the original heading has no content (blank or just a line-feed
         // character is left when all the content is cut), the original heading
         // will be removed and the new heading will retain the id
-        if ( !originalHeadingText || (originalHeadingText.length === 1 && originalHeadingText.charCodeAt(0) === 10)) {
+        if ( originalHeadingText.length <= 1 && notWordCharacter(originalHeadingText.charAt(0))) {
           originalHeading.remove();
           editor.fire(EVENT_NAMES.ID_RETAINED);
           return newHeading;
@@ -147,6 +147,13 @@
           return newHeading;
         }
 
+      }
+
+      function notWordCharacter(character) {
+        if (!character)
+          return true;
+
+        return !(/\w/.test(character));
       }
 
     }
