@@ -39,8 +39,6 @@
         shiftKey: false
       }));
 
-      console.log(editor.getData());
-
       resumeAfter(editor, 'allIdsComplete', function() {
         heading = editor.editable().findOne('h1');
 
