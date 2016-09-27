@@ -1,5 +1,8 @@
 /* exported assertPasteEvent, pasteFiles */
 
+// pasting.js from Clipboard plugin
+// https://github.com/ckeditor/ckeditor-dev/blob/master/tests/plugins/clipboard/_helpers/pasting.js
+
 'use strict';
 
 function assertPasteEvent( editor, eventData, expected, message, async ) {
