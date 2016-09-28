@@ -14,11 +14,27 @@ var addHeadingAnchors = {
     headings.forEach(function (heading) {
       if (id = heading.id) {
         var anchor = this.createAnchor(id);
+        heading.appendChild(anchor);
       }
     }.bind(this));
   },
 
   createAnchor: function (id) {
+    var anchor = document.createElement('a'),
+      anchorText = document.createTextNode('¶'),
+      attributes = {
+        href: id,
+        class: 'headerLink',
+        title: 'Permalink to this headline'
+      };
+
+    anchor.appendChild(anchorText);
+
+    for (var attr in attributes) {
+      anchor.setAttribute(attr, attributes[attr]);
+    }
+
+    return anchor;
   }
 
 };
