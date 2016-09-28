@@ -103,7 +103,7 @@
 
         for (i = 0; i < pastedElements.length; i++) {
           element = pastedElements[i];
-          if (element.attributes) {
+          if (element.type === CKEDITOR.NODE_ELEMENT) {
             id = element.attributes.id;
             originalHeading = checkForDuplicateId(id);
             if (originalHeading) {
