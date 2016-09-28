@@ -34,10 +34,7 @@
       resumeAfter(editor, 'allIdsComplete', function() {
         editor.execCommand('paste', text);
 
-        wait(function () {
-          assert.areSame('<p>This is some text</p>', editor.editable().getFirst().getOuterHtml())
-        }, 10);
-
+        assert.areSame('<p>This is some text</p>', editor.getData());
       });
 
       editor.execCommand('autoid');
