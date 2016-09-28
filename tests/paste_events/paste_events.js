@@ -25,16 +25,24 @@
       // verify we haven't broken regular copy / paste
       var bot = this.editorBot,
         editor = bot.editor,
+        resumeAfter = bender.tools.resumeAfter,
         startHtml = '<p>^</p>',
         text = 'This is some text';
 
       bot.setHtmlWithSelection(startHtml);
 
+      resumeAfter(editor, 'allIdsComplete', function() {
+        editor.execCommand('paste', text);
+
+        wait(function () {
+          assert.areSame('<p>This is some text</p>', editor.editable().getFirst().getOuterHtml())
+        }, 10);
+
+      });
+
       editor.execCommand('autoid');
 
-      editor.execCommand('paste', text);
-
-      assert.areSame('<p>This is some text</p>', editor.editable().getFirst().getOuterHtml());
+      wait();
     },
 
     'test pasted heading id does not change when it is not a duplicate id': function() {
