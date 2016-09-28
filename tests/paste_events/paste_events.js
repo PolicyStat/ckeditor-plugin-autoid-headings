@@ -21,6 +21,22 @@
       this.editor.execCommand('autoid');
     },
 
+    'test it can paste a regular text node': function() {
+      // verify we haven't broken regular copy / paste
+      var bot = this.editorBot,
+        editor = bot.editor,
+        startHtml = '<p>^</p>',
+        text = 'This is some text';
+
+      bot.setHtmlWithSelection(startHtml);
+
+      editor.execCommand('autoid');
+
+      editor.execCommand('paste', text);
+
+      assert.areSame('<p>This is some text</p>', editor.editable().getFirst().getOuterHtml());
+    },
+
     'test pasted heading id does not change when it is not a duplicate id': function() {
       var bot = this.editorBot,
         editor = bot.editor,
