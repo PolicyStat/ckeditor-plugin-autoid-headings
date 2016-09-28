@@ -8,14 +8,12 @@ var addHeadingAnchors = {
   },
 
   addAnchorsToHeadings: function () {
-    var headings = this.target.querySelectorAll('h1, h2, h3, h4, h5, h6'),
-      id;
+    var selectorString = 'h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]',
+      headings = this.target.querySelectorAll(selectorString)
 
     headings.forEach(function (heading) {
-      if (id = heading.id) {
-        var anchor = this.createAnchor(id);
-        heading.appendChild(anchor);
-      }
+      var anchor = this.createAnchor(heading.id);
+      heading.appendChild(anchor);
     }.bind(this));
   },
 
@@ -36,5 +34,4 @@ var addHeadingAnchors = {
 
     return anchor;
   }
-
 };
