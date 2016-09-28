@@ -109,6 +109,31 @@
       editor.applyStyle(style);
 
       wait();
+    },
+
+    'test it will retain the id if a heading is converted to a non-heading and back': function() {
+      var bot = this.editorBot,
+        editor = this.editor,
+        paragraph,
+        heading,
+        headingStyle = new CKEDITOR.style({ element: 'h1' }),
+        paragraphStyle = new CKEDITOR.style({ element: 'p' }),
+        resumeAfter = bender.tools.resumeAfter,
+        startHtml = '<h1 id="12345">This paragraph will be converted^</h1>';
+
+      bot.setHtmlWithSelection(startHtml);
+      editor.execCommand('autoid');
+
+      heading = editor.editable().findOne('h1');
+      assert.areSame('12345', heading.getId());
+
+      // convert to non-heading
+      editor.applyStyle(paragraphStyle);
+
+      // convert back to heading and verify id still intact
+      editor.applyStyle(headingStyle);
+      heading = editor.editable().findOne('h1');
+      assert.areSame('12345', heading.getId());
     }
   });
 })();

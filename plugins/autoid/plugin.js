@@ -139,9 +139,9 @@
           return newHeading;
         }
 
-        // if the text is identical (full copy), the original should retain its
+        // if the original heading text is not blank, the original should retain its
         // id and the new heading should get a new one.
-        if (newHeadingText === originalHeadingText) {
+        if (originalHeadingText) {
           newHeading.attributes.id = CKEDITOR.tools.getUniqueId();
           editor.fire(EVENT_NAMES.ID_ADDED);
           return newHeading;

@@ -39,8 +39,6 @@
         shiftKey: false
       }));
 
-      console.log(editor.getData());
-
       resumeAfter(editor, 'allIdsComplete', function() {
         heading = editor.editable().findOne('h1');
 
@@ -150,8 +148,53 @@
       editor.execCommand('autoid');
 
       wait();
-    }
+    },
 
+    'test it gives partially copied headings a new id': function() {
+      // when a partial heading is copied and either a closing or opening
+      // heading tag is grabbed, clipboard automatically includes the closing
+      // tag, and adds the id if it was not already part of the selection.
+      var bot = this.editorBot,
+        editor = bot.editor,
+        heading,
+        headings,
+        resumeAfter = bender.tools.resumeAfter,
+        startHtml = '<h1 id="12345">Start Heading^</h1>',
+        partialHeading = '<h1 id="12345">Start';
+
+      bot.setHtmlWithSelection(startHtml);
+
+      editor.editable().fire('keydown', new CKEDITOR.dom.event({
+        keyCode: 13,
+        ctrlKey: false,
+        shiftKey: false
+      }));
+
+      resumeAfter(editor, 'allIdsComplete', function() {
+        heading = editor.editable().findOne('h1');
+
+        // verify original heading still has same id
+        assert.areSame('12345', heading.getAttribute('id'));
+
+        resumeAfter(editor, 'idAdded', function() {
+          headings = editor.editable().find('h1');
+          // get pasted heading (second heading on page)
+          heading = headings.getItem(1);
+
+          // verify pasted heading does not have the original id
+          assert.areNotSame('12345', heading.getAttribute('id'));
+        });
+
+        editor.execCommand('paste', partialHeading);
+
+        wait();
+      });
+
+      editor.execCommand('autoid');
+
+      // wait for initial id assignment for all headings to complete
+      wait();
+    }
   });
 
 })();
