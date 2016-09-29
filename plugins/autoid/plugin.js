@@ -169,6 +169,41 @@
             linkTypeTab = infoTab.elements[1];
 
           linkTypeTab.items.push(['Link to heading in the text', 'heading']);
+          linkTypeTab.onChange = modifiedLinkTypeChanged;
+        }
+      }
+
+      function modifiedLinkTypeChanged() {
+        var dialog = this.getDialog(),
+          partIds = [ 'urlOptions', 'anchorOptions', 'emailOptions' ],
+          typeValue = this.getValue(),
+          uploadTab = dialog.definition.getContents( 'upload' ),
+          uploadInitiallyHidden = uploadTab && uploadTab.hidden;
+
+        if ( typeValue == 'url' ) {
+          if ( editor.config.linkShowTargetTab )
+            dialog.showPage( 'target' );
+          if ( !uploadInitiallyHidden )
+            dialog.showPage( 'upload' );
+          } else {
+            dialog.hidePage( 'target' );
+          if ( !uploadInitiallyHidden )
+            dialog.hidePage( 'upload' );
+        }
+
+        for ( var i = 0; i < partIds.length; i++ ) {
+          var element = dialog.getContentElement( 'info', partIds[ i ] );
+          if ( !element )
+            continue;
+
+          element = element.getElement().getParent().getParent();
+          if ( partIds[ i ] == typeValue + 'Options' )
+            element.show();
+          else
+            element.hide();
+        }
+
+        dialog.layout();
       }
 
     }
