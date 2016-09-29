@@ -176,6 +176,9 @@
           // Add option for heading links to linkType dropdown
           linkTypeTab.items.push(['Link to heading in the text', 'heading']);
 
+          // Add additional content to 'Link Info' tab for heading links
+          infoTab.elements.push(createHeadingLinkContent());
+
           // Modify linkType's 'onChange' function to accomodate new heading option
           linkTypeTab.onChange = modifiedLinkTypeChanged;
         }
@@ -214,6 +217,18 @@
         dialog.layout();
       }
 
+      function createHeadingLinkContent() {
+        return {
+          type: 'vbox',
+					id: 'headingOptions',
+					width: 260,
+					align: 'center',
+					padding: 0,
+          children: [
+
+          ]
+        }
+      }
     }
   });
 })();
