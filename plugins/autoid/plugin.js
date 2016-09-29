@@ -276,7 +276,8 @@
       }
 
       function modifiedOnOk() {
-        var data = {};
+        var data = {},
+          plugin = CKEDITOR.plugins.link;
 
         // Collect data from fields.
         this.commitContent( data );
