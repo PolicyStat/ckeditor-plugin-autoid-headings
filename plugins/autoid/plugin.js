@@ -173,7 +173,10 @@
             infoTab = def.contents[0],
             linkTypeTab = infoTab.elements[1];
 
+          // Add option for heading links to linkType dropdown
           linkTypeTab.items.push(['Link to heading in the text', 'heading']);
+
+          // Modify linkType's 'onChange' function to accomodate new heading option
           linkTypeTab.onChange = modifiedLinkTypeChanged;
         }
       }
