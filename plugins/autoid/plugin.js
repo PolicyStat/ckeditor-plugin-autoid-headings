@@ -221,9 +221,8 @@
         var headings;
 
         return {
-          type: 'hbox',
+          type: 'vbox',
           id: 'headingOptions',
-          widths: [ '100%' ],
           children: [ {
             type: 'select',
             id: 'heading',
