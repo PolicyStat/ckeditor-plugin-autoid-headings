@@ -160,6 +160,11 @@
         return !(/\w/.test(character));
       }
 
+      // This modifies the dialog for the 'link' plugin to allow the option of
+      // internal document linking to autoid headings. Original 'link' plugin
+      // code can be found at:
+      // https://github.com/ckeditor/ckeditor-dev/tree/master/plugins/link
+
       function modifyLinkDialog(ev) {
         var dialog = ev.data;
 
