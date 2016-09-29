@@ -221,21 +221,20 @@
         var headings;
 
         return {
-          type: 'vbox',
+          type: 'hbox',
           id: 'headingOptions',
-          width: 260,
-          align: 'center',
-          padding: 0,
+          widths: [ '100%' ],
           children: [ {
-            type: 'fieldset',
-            id: 'selectHeadingText',
+            type: 'select',
+            id: 'heading',
             label: 'Select a Heading',
+            style: 'width : 100%;',
+            items: [ [''] ],
             setup: function() {
               headings = findAllHeadings();
 
               this.getElement()[ headings && headings.count() ? 'show' : 'hide' ]();
-            },
-            children: [],
+            }
           },
           {
             type: 'html',
