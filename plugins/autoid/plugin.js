@@ -258,7 +258,8 @@
               // set the data type to 'anchor' since the procedure is the same
               // for headings.  This way, we don't have to modify the main
               // 'plugin.js' for 'link' to handle a new link type.
-              data.type = 'anchor';
+              if (data.heading.id)
+                data.type = 'anchor';
             }
           },
           {
