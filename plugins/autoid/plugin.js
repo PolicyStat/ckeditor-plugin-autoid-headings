@@ -228,11 +228,24 @@
             id: 'heading',
             label: 'Select a Heading',
             style: 'width : 100%;',
-            items: [ [''] ],
+            items: [ [ '' ] ],
             setup: function() {
+              this.clear();
+              this.add( [ '' ] );
+
               headings = findAllHeadings();
 
-              this.getElement()[ headings && headings.count() ? 'show' : 'hide' ]();
+              if (headings && headings.count()) {
+                this.getElement().show();
+                
+                for (var i = 0; i < headings.count(); i++) {
+                  var heading = headings.getItem(i);
+                  this.add( heading.getText(), heading.getId() );
+                }
+              }
+              else {
+                this.getElement().hide();
+              }
             }
           },
           {
