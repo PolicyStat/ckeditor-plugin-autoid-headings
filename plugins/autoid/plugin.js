@@ -282,6 +282,13 @@
         // Collect data from fields.
         this.commitContent( data );
 
+        // if there is a heading id and not an anchor id, the user is creating
+        // a link to a heading.  We set value of the heading id to the anchor.id
+        // property so it will create the new link without having to
+        // modify the plugin further
+        if (data.heading.id && !data.anchor.id)
+          data.anchor.id = data.heading.id;
+
         var selection = editor.getSelection(),
           attributes = plugin.getLinkAttributes( editor, data ),
           bm,
