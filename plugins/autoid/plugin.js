@@ -164,8 +164,11 @@
         var dialog = ev.data;
 
         if (dialog.name == 'link') {
+          var def = ev.data.definition,
+            infoTab = def.contents[0],
+            linkTypeTab = infoTab.elements[1];
 
-        }      
+          linkTypeTab.items.push(['Link to heading in the text', 'heading']);
       }
 
     }
