@@ -237,7 +237,7 @@
 
               if (headings && headings.count()) {
                 this.getElement().show();
-                
+
                 for (var i = 0; i < headings.count(); i++) {
                   var heading = headings.getItem(i);
                   this.add( heading.getText(), heading.getId() );
@@ -246,6 +246,16 @@
               else {
                 this.getElement().hide();
               }
+            },
+            commit: function(data) {
+              if (!data.heading)
+                data.heading = {};
+
+              data.heading.id = this.getValue();
+              // set the data type to 'anchor' since the procedure is the same
+              // for headings.  This way, we don't have to modify the main
+              // 'plugin.js' for 'link' to handle a new link type.
+              data.type = 'anchor';
             }
           },
           {
