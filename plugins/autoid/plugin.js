@@ -218,15 +218,36 @@
       }
 
       function createHeadingLinkContent() {
+        var headings;
+
         return {
           type: 'vbox',
-					id: 'headingOptions',
-					width: 260,
-					align: 'center',
-					padding: 0,
-          children: [
+          id: 'headingOptions',
+          width: 260,
+          align: 'center',
+          padding: 0,
+          children: [ {
+            type: 'fieldset',
+            id: 'selectHeadingText',
+            label: 'Select a Heading',
+            setup: function() {
+              headings = findAllHeadings();
 
-          ]
+              this.getElement()[ headings && headings.count() ? 'show' : 'hide' ]();
+            },
+            children: [],
+          },
+          {
+            type: 'html',
+            id: 'noHeadings',
+            style: 'text-align: center;',
+            html: '<div role="note" tabIndex="-1">' + CKEDITOR.tools.htmlEncode( '(No headings available in the document)' ) + '</div>',
+            // Focus the first element defined in above html.
+            focus: true,
+            setup: function() {
+              this.getElement()[ headings && headings.count() ? 'hide' : 'show' ]();
+            }
+          } ]
         }
       }
     }
