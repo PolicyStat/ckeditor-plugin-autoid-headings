@@ -42,6 +42,14 @@
         }
       });
 
+      CKEDITOR.on('dialogDefinition', function(ev) {
+        var dialog = ev.data;
+
+        if (dialog.name == 'link') {
+          
+        }
+      });
+
       editor.on('selectionChange', addIdIfNewHeading);
 
       editor.on('paste', checkPastedContentForHeadings);
