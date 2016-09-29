@@ -180,7 +180,7 @@
 
       function modifiedLinkTypeChanged() {
         var dialog = this.getDialog(),
-          partIds = [ 'urlOptions', 'anchorOptions', 'emailOptions' ],
+          partIds = [ 'urlOptions', 'anchorOptions', 'emailOptions', 'headingOptions' ],
           typeValue = this.getValue(),
           uploadTab = dialog.definition.getContents( 'upload' ),
           uploadInitiallyHidden = uploadTab && uploadTab.hidden;
