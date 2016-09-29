@@ -42,13 +42,7 @@
         }
       });
 
-      CKEDITOR.on('dialogDefinition', function(ev) {
-        var dialog = ev.data;
-
-        if (dialog.name == 'link') {
-          
-        }
-      });
+      CKEDITOR.on('dialogDefinition', modifyLinkDialog);
 
       editor.on('selectionChange', addIdIfNewHeading);
 
@@ -164,6 +158,14 @@
           return true;
 
         return !(/\w/.test(character));
+      }
+
+      function modifyLinkDialog(ev) {
+        var dialog = ev.data;
+
+        if (dialog.name == 'link') {
+
+        }      
       }
 
     }
