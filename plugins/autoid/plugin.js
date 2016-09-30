@@ -63,7 +63,7 @@
       }
 
       function findAllHeadings(editor) {
-        return editor.document.find('h1, h2, h3, h4, h5, h6');
+        return editor.editable().find('h1, h2, h3, h4, h5, h6');
       }
 
       function findHeadingIds(headings) {
