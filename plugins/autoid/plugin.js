@@ -173,17 +173,26 @@
             infoTab = def.contents[0],
             linkTypeTab = findLinkTypeTab(infoTab);
 
-          // Add option for heading links to linkType dropdown
-          linkTypeTab.items.push(['Link to heading in the text', 'heading']);
+          if (!headingTypeAdded(linkTypeTab)) {
+            // Add option for heading links to linkType dropdown
+            linkTypeTab.items.push(['Link to heading in the text', 'heading']);
 
-          // Add additional content to 'Link Info' tab for heading links
-          infoTab.elements.push(createHeadingLinkContent());
+            // Add additional content to 'Link Info' tab for heading links
 
-          // Modify linkType's 'onChange' function to accomodate new heading option
-          linkTypeTab.onChange = modifiedLinkTypeChanged;
+            // Modify linkType's 'onChange' function to accomodate new heading option
+            linkTypeTab.onChange = modifiedLinkTypeChanged;
 
-          // Modify main dialog 'onOk' function to handle heading data
-          def.onOk = modifiedOnOk;
+            // Modify main dialog 'onOk' function to handle heading data
+            def.onOk = modifiedOnOk;
+          }
+        }
+      }
+
+      function headingTypeAdded(linkTypeTab) {
+        for ( var i = 0; i < linkTypeTab.items.length; i++ ) {
+          var item = linkTypeTab.items[i];
+          if ( item[1] === 'heading' )
+            return true;
         }
       }
 
