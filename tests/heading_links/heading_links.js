@@ -1,5 +1,5 @@
 /* bender-tags: editor,unit */
-/* bender-ckeditor-plugins: link,toolbar */
+/* bender-ckeditor-plugins: link,toolbar,autoid */
 
 // based off of dialog test for 'link' plugin
 // https://github.com/ckeditor/ckeditor-dev/blob/master/tests/plugins/link/dialog.js
@@ -60,7 +60,7 @@
 	};
 
 	bender.editorsConfig = {
-		extraAllowedContent: 'a[id,name]'
+		extraAllowedContent: 'h1 h2 h3 h4 h5 h6 *[id]'
 	};
 
 	bender.test( {
