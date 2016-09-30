@@ -169,6 +169,8 @@
       // code can be found at:
       // https://github.com/ckeditor/ckeditor-dev/tree/master/plugins/link
 
+      var initialLinkText;
+
       function modifyLinkDialog(ev) {
         var dialog = ev.data;
 
@@ -306,7 +308,8 @@
           selectedElement = selection.getSelectedElement(),
           displayTextField = this.getContentElement( 'info', 'linkDisplayText' ).getElement().getParent().getParent(),
           element = null,
-          plugin = CKEDITOR.plugins.link;
+          plugin = CKEDITOR.plugins.link,
+          initialLinkText = this.getValueOf('info', 'linkDisplayText');
 
         // Fill in all the relevant fields if there's already one link selected.
         if ( ( element = plugin.getSelectedLink( editor ) ) && element.hasAttribute( 'href' ) ) {
