@@ -305,7 +305,7 @@
 					selection = editor.getSelection(),
 					selectedElement = selection.getSelectedElement(),
 					displayTextField = this.getContentElement( 'info', 'linkDisplayText' ).getElement().getParent().getParent(),
-					element = null;
+					element = null,
           plugin = CKEDITOR.plugins.link;
 
 				// Fill in all the relevant fields if there's already one link selected.
@@ -331,6 +331,9 @@
 
 				// Record down the selected element in the dialog.
 				this._.selectedElement = element;
+
+        if (data.anchor && data.anchor.id.match(/autoid-/))
+          data.type = 'heading';
 
 				this.setupContent( data );
       }
