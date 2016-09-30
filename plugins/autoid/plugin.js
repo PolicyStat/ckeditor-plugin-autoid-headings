@@ -295,7 +295,7 @@
             type: 'html',
             id: 'noHeadings',
             style: 'text-align: center;',
-            html: '<div role="note" tabIndex="-1">' + CKEDITOR.tools.htmlEncode( '(No headings available in the document)' ) + '</div>',
+            html: '<div role="note" tabIndex="-1">' + CKEDITOR.tools.htmlEncode( '(No headings created yet in the document)' ) + '</div>',
             // Focus the first element defined in above html.
             focus: true,
             setup: function() {
