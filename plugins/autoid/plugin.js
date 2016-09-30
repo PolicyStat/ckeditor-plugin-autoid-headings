@@ -258,7 +258,7 @@
             label: 'Select a Heading',
             style: 'width : 100%;',
             items: [ [ '' ] ],
-            setup: function() {
+            setup: function( data ) {
               this.clear();
               this.add( [ '' ] );
 
@@ -271,6 +271,9 @@
                   var heading = headings.getItem(i);
                   this.add( heading.getText(), heading.getId() );
                 }
+
+                if ( data.type && data.type === 'heading' )
+                  this.setValue( data.anchor.id );
               }
               else {
                 this.getElement().hide();
@@ -338,7 +341,7 @@
         if (data.anchor && data.anchor.id.match(/autoid-/))
           data.type = 'heading';
 
-          this.setupContent( data );
+        this.setupContent( data );
       }
 
       function modifiedOnOk() {
