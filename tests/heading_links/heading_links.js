@@ -68,22 +68,22 @@
 			CKEDITOR.dialog.getCurrent().hide();
 		},
 
-		'test discovery of anchors (framed)': function() {
-			assertAnchorDiscovery( this.editorBots.framed,
+		'test discovery of headings (framed)': function() {
+			assertHeadingDiscovery( this.editorBots.framed,
 				[ 'aa', 'ba', 'ca', '' ],
-				[ 'ab', 'bb', 'cb', '' ] );
+				[ 'a', 'b', '', '' ] );
 		},
 
-		'test discovery of anchors (inline)': function() {
-			assertAnchorDiscovery( this.editorBots.inline,
-				[ 'ga', 'ha', 'ma', 'na', 'oa', 'ta', 'ua', 'wa', '' ],
-				[ 'gb', 'hb', 'mb', 'nb', 'ob', 'tb', 'ub', 'wb', '' ] );
+		'test discovery of headings (inline)': function() {
+			assertHeadingDiscovery( this.editorBots.inline,
+				[ 'ma', 'na', 'oa', '' ],
+				[ 'm', 'n', '', '' ] );
 		},
 
-		'test discovery of anchors (divarea)': function() {
-			assertAnchorDiscovery( this.editorBots.divarea,
+		'test discovery of headings (divarea)': function() {
+			assertHeadingDiscovery( this.editorBots.divarea,
 				[ 'ta', 'ua', 'wa', '' ],
-				[ 'tb', 'ub', 'wb', '' ] );
+				[ 't', 'u', '', '' ] );
 		}
 	} );
 } )();
