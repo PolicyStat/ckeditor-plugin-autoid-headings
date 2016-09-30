@@ -31,27 +31,27 @@
 			name: 'framed',
 			creator: 'replace',
 			startupData: '<p>' +
-				'<a id="aa" name="ab">a</a>' +
-				'<a id="ba" name="bb">b</a>' +
-				'<a id="ca" name="cb"></a>' +
+				'<h1 id="aa" name="ab">a</h1>' +
+				'<h2 id="ba" name="bb">b</h2>' +
+				'<h3 id="ca" name="cb"></h3>' +
 			'</p>'
 		},
 		inline: {
 			name: 'inline',
 			creator: 'inline',
 			startupData: '<p>' +
-				'<a id="ma" name="mb">m</a>' +
-				'<a id="na" name="nb">n</a>' +
-				'<a id="oa" name="ob"></a>' +
+				'<h1 id="ma" name="mb">m</h1>' +
+				'<h2 id="na" name="nb">n</h2>' +
+				'<h3 id="oa" name="ob"></h3>' +
 			'</p>'
 		},
 		divarea: {
 			name: 'divarea',
 			creator: 'replace',
 			startupData: '<p>' +
-				'<a id="ta" name="tb">t</a>' +
-				'<a id="ua" name="ub">u</a>' +
-				'<a id="wa" name="wb"></a>' +
+				'<h1 id="ta" name="tb">t</h1>' +
+				'<h2 id="ua" name="ub">u</h2>' +
+				'<h3 id="wa" name="wb"></h3>' +
 			'</p>',
 			config: {
 				extraPlugins: 'divarea'
