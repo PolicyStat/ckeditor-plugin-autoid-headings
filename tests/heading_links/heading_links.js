@@ -22,7 +22,7 @@
 				textContents.push( headingOptions[ i ].text );
 
 			assert.areSame( expIds.sort().join( ',' ), ids.sort().join( ',' ), 'Heading IDs discovered properly' );
-			assert.areSame( expTextContents.sort().join( ',' ), textContents.sort().join( ',' ), 'Heading names discovered properly' );
+			assert.areSame( expTextContents.sort().join( ',' ), textContents.sort().join( ',' ), 'Heading texts discovered properly' );
 		} );
 	}
 
