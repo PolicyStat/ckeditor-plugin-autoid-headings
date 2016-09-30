@@ -16,10 +16,10 @@
 				ids = [];
 
 			for ( var i = headingOptions.length; i--; )
-				ids.push( headingOptions[ i ][ 1 ].value );
+				ids.push( headingOptions[ i ].value );
 
 			for ( i = headingOptions.length; i--; )
-				textContents.push( headingOptions[ i ][ 0 ].value );
+				textContents.push( headingOptions[ i ].text );
 
 			assert.areSame( expIds.sort().join( ',' ), ids.sort().join( ',' ), 'Heading IDs discovered properly' );
 			assert.areSame( expTextContents.sort().join( ',' ), textContents.sort().join( ',' ), 'Heading names discovered properly' );
