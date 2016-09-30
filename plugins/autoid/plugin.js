@@ -171,7 +171,7 @@
         if (dialog.name == 'link') {
           var def = ev.data.definition,
             infoTab = def.contents[0],
-            linkTypeTab = infoTab.elements[1];
+            linkTypeTab = findLinkTypeTab(infoTab);
 
           // Add option for heading links to linkType dropdown
           linkTypeTab.items.push(['Link to heading in the text', 'heading']);
@@ -184,6 +184,14 @@
 
           // Modify main dialog 'onOk' function to handle heading data
           def.onOk = modifiedOnOk;
+        }
+      }
+
+      function findLinkTypeTab(infoTab) {
+        for ( var i = 0; i < infoTab.elements.length; i++ ) {
+          var element = infoTab.elements[i];
+          if ( element.id === "linkType" )
+            return element;
         }
       }
 
