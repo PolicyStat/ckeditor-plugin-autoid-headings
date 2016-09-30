@@ -76,8 +76,8 @@
 
 		'test discovery of headings (inline)': function() {
 			assertHeadingDiscovery( this.editorBots.inline,
-				[ 'ma', 'na', 'oa', '' ],
-				[ 'm', 'n', '', '' ] );
+				[ 'ma', 'na', 'oa', 'ta', 'ua', 'wa', '' ],
+				[ 'm', 'n', '', 't', 'u', '', '' ] );
 		},
 
 		'test discovery of headings (divarea)': function() {
