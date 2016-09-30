@@ -188,7 +188,8 @@
             // Modify linkType's 'onChange' function to accomodate new heading option
             linkTypeTab.onChange = modifiedLinkTypeChanged;
 
-            // Modify main dialog 'onOk' function to handle heading data
+            // Modify main dialog 'onShow' and 'onOk' function to handle heading data
+            def.onShow = modifiedOnShow;
             def.onOk = modifiedOnOk;
           }
         }
@@ -297,6 +298,40 @@
             }
           } ]
         }
+      }
+
+      function modifiedOnShow() {
+        var editor = this.getParentEditor(),
+					selection = editor.getSelection(),
+					selectedElement = selection.getSelectedElement(),
+					displayTextField = this.getContentElement( 'info', 'linkDisplayText' ).getElement().getParent().getParent(),
+					element = null;
+
+				// Fill in all the relevant fields if there's already one link selected.
+				if ( ( element = plugin.getSelectedLink( editor ) ) && element.hasAttribute( 'href' ) ) {
+					// Don't change selection if some element is already selected.
+					// For example - don't destroy fake selection.
+					if ( !selectedElement ) {
+						selection.selectElement( element );
+						selectedElement = element;
+					}
+				} else {
+					element = null;
+				}
+
+				// Here we'll decide whether or not we want to show Display Text field.
+				if ( plugin.showDisplayTextForElement( selectedElement, editor ) ) {
+					displayTextField.show();
+				} else {
+					displayTextField.hide();
+				}
+
+				var data = plugin.parseLinkAttributes( editor, element );
+
+				// Record down the selected element in the dialog.
+				this._.selectedElement = element;
+
+				this.setupContent( data );
       }
 
       function modifiedOnOk() {
