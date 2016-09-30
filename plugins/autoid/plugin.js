@@ -169,14 +169,14 @@
       // code can be found at:
       // https://github.com/ckeditor/ckeditor-dev/tree/master/plugins/link
 
-      var initialLinkText;
+      var initialLinkText, dialogEditor;
 
       function modifyLinkDialog(ev) {
         var dialog = ev.data;
 
         if (dialog.name == 'link') {
           var def = ev.data.definition,
-            editor = def.dialog._.editor,
+            dialogEditor = def.dialog.getParentEditor(),
             infoTab = def.contents[0],
             linkTypeTab = findLinkTypeTab(infoTab);
 
@@ -185,7 +185,7 @@
             linkTypeTab.items.push(['Link to heading in the text', 'heading']);
 
             // Add additional content to 'Link Info' tab for heading links
-            infoTab.elements.push(createHeadingLinkContent(editor));
+            infoTab.elements.push(createHeadingLinkContent(dialogEditor));
 
             // Modify linkType's 'onChange' function to accomodate new heading option
             linkTypeTab.onChange = modifiedLinkTypeChanged;
@@ -343,6 +343,7 @@
 
       function modifiedOnOk() {
         var data = {},
+          editor = this.getParentEditor(),
           plugin = CKEDITOR.plugins.link;
 
         // Collect data from fields.
