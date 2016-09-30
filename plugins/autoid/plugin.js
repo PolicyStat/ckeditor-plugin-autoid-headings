@@ -49,7 +49,7 @@
       editor.on('paste', checkPastedContentForHeadings);
 
       function addAllIds() {
-        var headings = findAllHeadings(),
+        var headings = findAllHeadings(editor),
           i, heading;
 
         for (i = 0; i < headings.count(); i++) {
@@ -62,7 +62,7 @@
         editor.fire(EVENT_NAMES.ALL_IDS_COMPLETE);
       }
 
-      function findAllHeadings() {
+      function findAllHeadings(editor) {
         return editor.document.find('h1, h2, h3, h4, h5, h6');
       }
 
@@ -119,7 +119,7 @@
       }
 
       function checkForDuplicateId(id) {
-        var headingIds = findHeadingIds(findAllHeadings()),
+        var headingIds = findHeadingIds(findAllHeadings(editor)),
           i, headingId, originalHeading;
 
         for (i = 0; i < headingIds.length; i++) {
@@ -170,6 +170,7 @@
 
         if (dialog.name == 'link') {
           var def = ev.data.definition,
+            editor = def.dialog._.editor,
             infoTab = def.contents[0],
             linkTypeTab = findLinkTypeTab(infoTab);
 
@@ -178,6 +179,7 @@
             linkTypeTab.items.push(['Link to heading in the text', 'heading']);
 
             // Add additional content to 'Link Info' tab for heading links
+            infoTab.elements.push(createHeadingLinkContent(editor));
 
             // Modify linkType's 'onChange' function to accomodate new heading option
             linkTypeTab.onChange = modifiedLinkTypeChanged;
@@ -237,7 +239,7 @@
         dialog.layout();
       }
 
-      function createHeadingLinkContent() {
+      function createHeadingLinkContent(editor) {
         var headings;
 
         return {
@@ -253,7 +255,7 @@
               this.clear();
               this.add( [ '' ] );
 
-              headings = findAllHeadings();
+              headings = findAllHeadings(editor);
 
               if (headings && headings.count()) {
                 this.getElement().show();
