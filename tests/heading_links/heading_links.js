@@ -7,24 +7,22 @@
 ( function() {
 	'use strict';
 
-	function assertAnchorDiscovery( bot, expIds, expNames ) {
+	function assertHeadingDiscovery( bot, expIds, expTextContents ) {
 		bot.dialog( 'link', function( dialog ) {
-			dialog.setValueOf( 'info', 'linkType', 'anchor' );
+			dialog.setValueOf( 'info', 'linkType', 'heading' );
 
-			var idOptions = dialog.getContentElement( 'info', 'anchorId' ).getInputElement().$.options,
-				nameOptions = dialog.getContentElement( 'info', 'anchorName' ).getInputElement().$.options,
-
-				names = [],
+			var headingOptions = dialog.getContentElement( 'info', 'heading' ).getInputElement().$.options,
+				textContents = [],
 				ids = [];
 
-			for ( var i = idOptions.length; i--; )
-				ids.push( idOptions[ i ].value );
+			for ( var i = headingOptions.length; i--; )
+				ids.push( headingOptions[ i ][ 1 ].value );
 
-			for ( i = nameOptions.length; i--; )
-				names.push( nameOptions[ i ].value );
+			for ( i = headingOptions.length; i--; )
+				textContents.push( headingOptions[ i ][ 0 ].value );
 
-			assert.areSame( expIds.sort().join( ',' ), ids.sort().join( ',' ), 'Anchor IDs discovered properly' );
-			assert.areSame( expNames.sort().join( ',' ), names.sort().join( ',' ), 'Anchor names discovered properly' );
+			assert.areSame( expIds.sort().join( ',' ), ids.sort().join( ',' ), 'Heading IDs discovered properly' );
+			assert.areSame( expTextContents.sort().join( ',' ), textContents.sort().join( ',' ), 'Heading names discovered properly' );
 		} );
 	}
 
