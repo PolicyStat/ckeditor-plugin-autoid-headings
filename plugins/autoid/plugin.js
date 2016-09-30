@@ -80,9 +80,13 @@
       }
 
       function addId(heading) {
-        var uuid = CKEDITOR.tools.getUniqueId();
+        var uuid = createAutoId();
         heading.setAttributes({ id: uuid });
         editor.fire(EVENT_NAMES.ID_ADDED);
+      }
+
+      function createAutoId() {
+        return 'autoid-' + CKEDITOR.tools.getUniqueId();
       }
 
       function addIdIfNewHeading() {
@@ -146,7 +150,7 @@
         // if the original heading text is not blank, the original should retain its
         // id and the new heading should get a new one.
         if (originalHeadingText) {
-          newHeading.attributes.id = CKEDITOR.tools.getUniqueId();
+          newHeading.attributes.id = createAutoId();
           editor.fire(EVENT_NAMES.ID_ADDED);
           return newHeading;
         }
