@@ -306,6 +306,7 @@
 					selectedElement = selection.getSelectedElement(),
 					displayTextField = this.getContentElement( 'info', 'linkDisplayText' ).getElement().getParent().getParent(),
 					element = null;
+          plugin = CKEDITOR.plugins.link;
 
 				// Fill in all the relevant fields if there's already one link selected.
 				if ( ( element = plugin.getSelectedLink( editor ) ) && element.hasAttribute( 'href' ) ) {
