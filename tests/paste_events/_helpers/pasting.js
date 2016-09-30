@@ -1,1 +1,1 @@
-/Users/bause/code/policystat/ckeditor-plugin-autoid-headings/ckeditor/tests/plugins/clipboard/_helpers/pasting.js
+../../../ckeditor/tests/plugins/clipboard/_helpers/pasting.js
