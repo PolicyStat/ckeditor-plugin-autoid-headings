@@ -50,6 +50,7 @@ var config = {
                 'smoke/**',
                 'ids/**',
                 'paste_events/**',
+                'heading_links/**',
                 '!**/_*/**',
 
             ],
