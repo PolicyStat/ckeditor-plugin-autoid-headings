@@ -35,3 +35,8 @@ var addHeadingAnchors = {
     return anchor;
   }
 };
+
+
+var toggleExpand = function(el) {
+  el.classList.toggle('expand');
+}

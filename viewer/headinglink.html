@@ -1,0 +1,16 @@
+<link href="headinglinks.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.15/clipboard.js"></script>
+<script src="add_heading_anchors.js"></script>
+<div class="heading-link" onclick="toggleExpand(this)">
+    <div class="share">
+        Share
+    </div>
+    <div class="Options">
+        <button id="copy-button" data-clipboard-text="Copy Me!" title="Click to copy me.">Share</button>
+        please??
+    </div>
+</div>
+
+<script>
+    var client = new Clipboard('.copy-button');
+</script>
