@@ -21,9 +21,9 @@ var addHeadingAnchors = {
     var anchor = document.createElement('a'),
       icon = document.createElement('i'),
       attributes = {
-        href: id,
+        href: '#' + id,
         class: 'headerLink',
-        title: 'Permalink to this headline'
+        title: 'Permalink to this headline',
       };
 
     icon.setAttribute('class', 'fa fa-share-square-o');
@@ -34,6 +34,13 @@ var addHeadingAnchors = {
       anchor.setAttribute(attr, attributes[attr]);
     }
 
+    // there might be a browser quirk here
+    anchor.setAttribute('data-clipboard-text', anchor.href);
+
     return anchor;
+  },
+
+  registerClipboardHandler: function (anchor) {
+      new Clipboard('a.headerLink');
   }
 };

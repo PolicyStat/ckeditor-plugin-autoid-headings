@@ -4,6 +4,6 @@ describe('addHeadingAnchors', function() {
   });
 
   it('should add headings', function() {
-      addHeadingAnchors.init('blah');      
+      addHeadingAnchors.init('#testarea');
   })
 });
