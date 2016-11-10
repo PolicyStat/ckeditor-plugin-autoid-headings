@@ -4,8 +4,6 @@ describe('addHeadingAnchors', function() {
   });
 
   it('should add headings', function() {
-      addHeadingAnchors.init('blah');
-
-      // test
+      addHeadingAnchors.init('blah');      
   })
 });
