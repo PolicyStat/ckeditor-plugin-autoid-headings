@@ -15,6 +15,8 @@ var addHeadingAnchors = {
       var anchor = this.createAnchor(heading.id);
       heading.appendChild(anchor);
     }.bind(this));
+
+    this.registerClipboardHandler()
   },
 
   createAnchor: function (id) {
@@ -40,7 +42,7 @@ var addHeadingAnchors = {
     return anchor;
   },
 
-  registerClipboardHandler: function (anchor) {
+  registerClipboardHandler: function () {
       new Clipboard('a.headerLink');
   }
 };
