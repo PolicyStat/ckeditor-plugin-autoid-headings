@@ -26,7 +26,7 @@ var addHeadingAnchors = {
         title: 'Permalink to this headline',
       };
 
-    icon.setAttribute('class', 'fa fa-share-square-o');
+    icon.setAttribute('class', 'icon-share');
 
     anchor.appendChild(icon);
 
