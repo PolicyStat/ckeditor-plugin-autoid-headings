@@ -19,14 +19,16 @@ var addHeadingAnchors = {
 
   createAnchor: function (id) {
     var anchor = document.createElement('a'),
-      anchorText = document.createTextNode('¶'),
+      icon = document.createElement('i'),
       attributes = {
         href: id,
         class: 'headerLink',
         title: 'Permalink to this headline'
       };
 
-    anchor.appendChild(anchorText);
+    icon.setAttribute('class', 'fa fa-share-square-o');
+
+    anchor.appendChild(icon);
 
     for (var attr in attributes) {
       anchor.setAttribute(attr, attributes[attr]);
@@ -35,8 +37,3 @@ var addHeadingAnchors = {
     return anchor;
   }
 };
-
-
-var toggleExpand = function(el) {
-  el.classList.toggle('expand');
-}
