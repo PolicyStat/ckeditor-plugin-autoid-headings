@@ -4,11 +4,12 @@ describe('addHeadingAnchors', function() {
     addHeadingAnchors.init('#testarea');
 
     it('added the header links beside each heading', function() {
-        var headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+        var headingsWithAnId = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
 
-        headings.forEach(function assertHasCopyLink(heading) {
-            var anchor = heading.lastChild;
-            var href;
+        headingsWithAnId.forEach(function assertHasCopyLink(heading) {
+            var anchor = heading.lastChild,
+                href,
+                clipboardDataAttribute;
 
             // is element
             assert.equal(anchor.nodeType, 1);
@@ -21,6 +22,14 @@ describe('addHeadingAnchors', function() {
             href = anchor.getAttribute('href');
 
             assert.endsWith(href, "#" + heading.getAttribute('id'));
+
+            // data-clipboard-text is the full url
+
+            clipboardDataAttribute = anchor.getAttribute('data-clipboard-text');
+
+            // this is a crappy/quick way to assert for the full url being in the data attribute.
+            assert.startsWith(clipboardDataAttribute, 'http://');
+            assert.endsWith(clipboardDataAttribute, "#" + heading.getAttribute('id'));
 
         })
 
