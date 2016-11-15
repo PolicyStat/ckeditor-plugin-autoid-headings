@@ -29,7 +29,8 @@
             "mocha": true
         },
         "globals": {
-            "Clipboard": true
+            "Clipboard": true,
+            "chai": true
         }
     }
 }
