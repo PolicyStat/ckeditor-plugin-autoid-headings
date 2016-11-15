@@ -35,7 +35,7 @@ describe('addHeadingAnchors', function() {
         });
     });
 
-    it('copies to clipboard when clicked', function() {
+    it('changes the address bar when clicking on links', function() {
         this.clipboardAnchors.forEach(function assertClipboardCopy(anchor) {
             var href = anchor.getAttribute('href');
             console.log(href);
@@ -44,9 +44,8 @@ describe('addHeadingAnchors', function() {
             // assert the address bar changed
 
             assert(window.location.hash, href);
-
-            // assert clipboard content
-
         });
-    })
+    });
+
+    it('copies to clipboard when clicking on links'); // stub, see https://w3c.github.io/editing/execCommand.html#dfn-the-copy-command
 });
