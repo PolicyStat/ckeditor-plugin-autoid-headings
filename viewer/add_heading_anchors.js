@@ -43,6 +43,8 @@ var addHeadingAnchors = {
   },
 
   registerClipboardHandler: function () {
-      new Clipboard('a.headerLink');
+      if (!this.handler) {
+        this.handler = new Clipboard('a.headerLink');
+      }
   }
 };
