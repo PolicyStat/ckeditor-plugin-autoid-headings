@@ -67,9 +67,10 @@ describe('addHeadingAnchors', function () {
             });
         });
 
-        it('copies to clipboard when clicking on links', function () {
+        it('copies to clipboard when clicking on links', function (done) {
+            // a quick alternative to spying
+            var callCount = 0;
             // we can't directly assert on the real clipboard thanks to https://w3c.github.io/editing/execCommand.html#dfn-the-copy-command
-
             this.clipboardAnchors.forEach(function (anchor) {
 
                 // Register a one time event handler to check the event text
@@ -82,6 +83,12 @@ describe('addHeadingAnchors', function () {
                     assert.equal(url, anchor.getAttribute('data-clipboard-text'));
 
                     e.clearSelection();
+
+                    // If we somehow don't add all 6 headings,
+                    // this test will fail because the callback is not fired
+                    if (callCount === 6) {
+                        done();
+                    }
                 });
 
                 // click on all the anchors
