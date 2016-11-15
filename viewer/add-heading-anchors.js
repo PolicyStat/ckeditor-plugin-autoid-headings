@@ -1,4 +1,6 @@
+/*eslint-disable no-unused-vars*/
 var addHeadingAnchors = {
+/*eslint-enable no-unused-vars*/
 
   init: function (selector) {
     this.target = document.querySelector(selector);
