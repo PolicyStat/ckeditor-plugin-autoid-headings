@@ -37,6 +37,15 @@ describe('addHeadingAnchors', function() {
 
     it('copies to clipboard when clicked', function() {
         this.clipboardAnchors.forEach(function assertClipboardCopy(anchor) {
+            var href = anchor.getAttribute('href');
+            console.log(href);
+            anchor.click();
+
+            // assert the address bar changed
+
+            assert(window.location.hash, href);
+
+            // assert clipboard content
 
         });
     })

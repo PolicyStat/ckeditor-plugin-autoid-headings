@@ -4,6 +4,7 @@ var addHeadingAnchors = {
     this.target = document.querySelector(selector);
     if (this.target) {
       this.addAnchorsToHeadings();
+      this.registerClipboardHandler();
     }
   },
 
@@ -15,8 +16,6 @@ var addHeadingAnchors = {
       var anchor = this.createAnchor(heading.id);
       heading.appendChild(anchor);
     }.bind(this));
-
-    this.registerClipboardHandler()
   },
 
   createAnchor: function (id) {
