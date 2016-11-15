@@ -84,6 +84,8 @@ describe('addHeadingAnchors', function () {
                     e.clearSelection();
                 });
 
+                // click on all the anchors
+
                 anchor.click();
             });
 
