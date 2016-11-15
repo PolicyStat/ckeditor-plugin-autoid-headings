@@ -30,8 +30,14 @@ describe('addHeadingAnchors', function() {
             // this is a crappy/quick way to assert for the full url being in the data attribute.
             assert.startsWith(clipboardDataAttribute, 'http://');
             assert.endsWith(clipboardDataAttribute, "#" + heading.getAttribute('id'));
-
-        })
-
+        });
     });
+
+    it('copies to clipboard when clicked', function() {
+        var clipboardAnchors = document.querySelectorAll('a[data-clipboard-text]');
+
+        clipboardAnchors.forEach(function assertClipboardCopy(anchor) {
+
+        });
+    })
 });
