@@ -2,12 +2,14 @@ var assert = chai.assert;
 
 describe('addHeadingAnchors', function () {
     before(function () {
+        this.testArea = document.getElementById('testarea');
         addHeadingAnchors.init('#testarea');
     });
 
     describe('HTML modification', function () {
         before(function() {
-            this.headingsWithAnId = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+            this.headingsWithAnId = this.testArea.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+            this.headingsWithoutAnId = this.testArea.querySelectorAll('h1:not([id]), h2:not([id]), h3:not([id]), h4:not([id]), h5:not([id]), h6:not([id])');
         });
 
         it('added the header links beside each heading', function () {
@@ -37,11 +39,20 @@ describe('addHeadingAnchors', function () {
                 assert.endsWith(clipboardDataAttribute, "#" + heading.getAttribute('id'));
             });
         });
+
+        it('did not add anchors inside non-id headings', function() {
+            this.headingsWithoutAnId.forEach(function assertNoAnchorAdded(heading) {
+                // we can just assert there is no anchor, because the starting html doesn't have it.
+                var anchor = heading.querySelector('a');
+
+                assert.isNull(anchor);
+            });
+        })
     });
 
     describe('click handling', function () {
         before(function() {
-            this.clipboardAnchors = document.querySelectorAll('a[data-clipboard-text]');
+            this.clipboardAnchors = this.testArea.querySelectorAll('a[data-clipboard-text]');
         })
 
         it('changes the address bar when clicking on links', function () {
