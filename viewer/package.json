@@ -1,5 +1,5 @@
 {
-  "name": "viewer",
+  "name": "ckeditor-plugin-autoid-headings-viewer",
   "version": "1.0.0",
   "description": "",
   "main": "add_heading_anchors.js",
