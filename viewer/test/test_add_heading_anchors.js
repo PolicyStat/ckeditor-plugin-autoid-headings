@@ -70,19 +70,26 @@ describe('addHeadingAnchors', function () {
         it('copies to clipboard when clicking on links', function (done) {
             // a quick alternative to spying
             var callCount = 0;
-            // we can't directly assert on the real clipboard thanks to https://w3c.github.io/editing/execCommand.html#dfn-the-copy-command
+
             this.clipboardAnchors.forEach(function (anchor) {
 
                 // Register a one time event handler to check the event text
                 // this isn't a very good test due to the limitations.
                 // It basically checks that yes, clipboardjs was init and
                 // catches clicks on all the anchors.
+
+                // We have to use the error event,
+                // because it will never succeed without an actual click.
+                // see https://w3c.github.io/editing/execCommand.html#dfn-the-copy-command
+
                 addHeadingAnchors.handler.once('error', function (e) {
                     var url = e.text;
 
                     assert.equal(url, anchor.getAttribute('data-clipboard-text'));
 
                     e.clearSelection();
+
+                    callCount += 1;
 
                     // If we somehow don't add all 6 headings,
                     // this test will fail because the callback is not fired
