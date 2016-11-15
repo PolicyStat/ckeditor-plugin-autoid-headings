@@ -9,8 +9,8 @@ var addHeadingAnchors = {
   },
 
   addAnchorsToHeadings: function () {
-    var selectorString = 'h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]',
-      headings = this.target.querySelectorAll(selectorString)
+    var selectorString = "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]",
+      headings = this.target.querySelectorAll(selectorString);
 
     headings.forEach(function (heading) {
       var anchor = this.createAnchor(heading.id);
@@ -19,15 +19,15 @@ var addHeadingAnchors = {
   },
 
   createAnchor: function (id) {
-    var anchor = document.createElement('a'),
-      icon = document.createElement('i'),
+    var anchor = document.createElement("a"),
+      icon = document.createElement("i"),
       attributes = {
-        href: '#' + id,
-        class: 'headerLink',
-        title: 'Permalink to this headline',
+        href: "#" + id,
+        class: "headerLink",
+        title: "Permalink to this headline"
       };
 
-    icon.setAttribute('class', 'icon-share');
+    icon.setAttribute("class", "icon-share");
 
     anchor.appendChild(icon);
 
@@ -36,14 +36,14 @@ var addHeadingAnchors = {
     }
 
     // there might be a browser quirk here
-    anchor.setAttribute('data-clipboard-text', anchor.href);
+    anchor.setAttribute("data-clipboard-text", anchor.href);
 
     return anchor;
   },
 
   registerClipboardHandler: function () {
-      if (!this.handler) {
-        this.handler = new Clipboard('a.headerLink');
-      }
+    if (!this.handler) {
+      this.handler = new Clipboard("a.headerLink");
+    }
   }
 };

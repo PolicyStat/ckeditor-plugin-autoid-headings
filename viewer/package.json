@@ -5,7 +5,8 @@
   "main": "add_heading_anchors.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --format compact ."
+    "lint": "eslint --format compact .",
+    "fix-lint": "eslint --fix --format compact ."
   },
   "author": "",
   "license": "ISC",
