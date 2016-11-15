@@ -31,13 +31,10 @@ describe("addHeadingAnchors", function () {
         assert.equal(anchor.nodeName, "A");
 
         // href is to id
-
         href = anchor.getAttribute("href");
-
         assert.endsWith(href, "#" + heading.getAttribute("id"));
 
         // data-clipboard-text is the full url
-
         clipboardDataAttribute = anchor.getAttribute("data-clipboard-text");
 
         // this is a crappy/quick way to assert for the full url being in the data attribute.
@@ -71,7 +68,6 @@ describe("addHeadingAnchors", function () {
         anchor.click();
 
         // assert the address bar changed
-
         assert(window.location.hash, href);
       });
     });
