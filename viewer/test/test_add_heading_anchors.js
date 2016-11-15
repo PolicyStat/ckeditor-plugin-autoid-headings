@@ -1,12 +1,14 @@
 var assert = chai.assert;
 
 describe('addHeadingAnchors', function() {
-    addHeadingAnchors.init('#testarea');
+    before(function() {
+        addHeadingAnchors.init('#testarea');
+        this.headingsWithAnId = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
+        this.clipboardAnchors = document.querySelectorAll('a[data-clipboard-text]');
+    });
 
     it('added the header links beside each heading', function() {
-        var headingsWithAnId = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
-
-        headingsWithAnId.forEach(function assertHasCopyLink(heading) {
+        this.headingsWithAnId.forEach(function assertHasCopyLink(heading) {
             var anchor = heading.lastChild,
                 href,
                 clipboardDataAttribute;
@@ -34,9 +36,7 @@ describe('addHeadingAnchors', function() {
     });
 
     it('copies to clipboard when clicked', function() {
-        var clipboardAnchors = document.querySelectorAll('a[data-clipboard-text]');
-
-        clipboardAnchors.forEach(function assertClipboardCopy(anchor) {
+        this.clipboardAnchors.forEach(function assertClipboardCopy(anchor) {
 
         });
     })
