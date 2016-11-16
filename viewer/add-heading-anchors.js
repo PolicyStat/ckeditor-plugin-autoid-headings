@@ -62,17 +62,19 @@ var addHeadingAnchors = {
     popover.on("shown", function () {
       // the contents of popover are lazy-created, so this unfortunately needs to go here.
       var input = document.getElementById(inputId);
-      input.focus();
-      input.select();
-
-      input.addEventListener("blur", function () {
+      var blurHandler = function () {
         setTimeout(function () {
           // if the input hasn't been re-selected
           if (document.activeElement !== input) {
             $(anchor).popover("hide");
+            input.removeEventListener("blur", blurHandler);
           }
         }, timeToFade);
-      });
+      };
+
+      input.addEventListener("blur", blurHandler);
+      input.focus();
+      input.select();
     });
   },
 
