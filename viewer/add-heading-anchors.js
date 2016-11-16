@@ -60,6 +60,7 @@ var addHeadingAnchors = {
     popover.on("shown", function (e) {
       var input = document.getElementById(inputId);
       input.focus();
+      input.select();
     });
   },
 
