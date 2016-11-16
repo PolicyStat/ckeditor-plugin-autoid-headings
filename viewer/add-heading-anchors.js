@@ -15,9 +15,10 @@ var addHeadingAnchors = {
     var headings = this.target.querySelectorAll(selectorString);
 
     headings.forEach(function (heading) {
-      var anchor = this.createAnchor(heading.id);
+      var id = heading.id;
+      var anchor = this.createAnchor(id);
       heading.appendChild(anchor);
-      this.createPopover(anchor);
+      this.createPopover(anchor, id);
     }.bind(this));
   },
 
@@ -43,21 +44,28 @@ var addHeadingAnchors = {
     return anchor;
   },
 
-  createPopover: function (anchor) {
-    $(anchor).popover({
+  createPopover: function (anchor, headingId) {
+    var popover;
+    var inputId = "popover-" + headingId; 
+    popover = $(anchor).popover({
       container: "body",
       title: "Share a link to this section",
       content: function () {
-        return "<input value='" + anchor.href + "'>";
+        return "<input id='" + inputId +  "' value='" + anchor.href + "'>";
       },
       html: true,
       trigger: "manual" // this disables it for clicks
+    });
+
+    popover.on("shown", function (e) {
+      var input = document.getElementById(inputId);
+      input.focus();
     });
   },
 
   registerClipboardHandler: function () {
     var clipboardErrorHandler = function (e) {
-      $(e.trigger).popover('show');
+      $(e.trigger).popover("show");
     };
     if (!this.handler) {
       this.handler = new Clipboard("a.headerLink");
