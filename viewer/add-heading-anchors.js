@@ -1,6 +1,7 @@
 /*eslint-disable no-unused-vars*/
 var addHeadingAnchors = {
   /*eslint-enable no-unused-vars*/
+  TIME_TO_FADE: 1000,
 
   init: function (selector) {
     this.target = document.querySelector(selector);
@@ -47,6 +48,7 @@ var addHeadingAnchors = {
   createPopover: function (anchor, headingId) {
     var popover;
     var inputId = "popover-" + headingId;
+    var timeToFade = this.TIME_TO_FADE;
     popover = $(anchor).popover({
       container: "body",
       title: "Share a link to this section",
@@ -57,11 +59,20 @@ var addHeadingAnchors = {
       trigger: "manual" // this disables it for clicks
     });
 
-    popover.on("shown", function (e) {
+    popover.on("shown", function () {
       // the contents of popover are lazy-created, so this unfortunately needs to go here.
       var input = document.getElementById(inputId);
       input.focus();
       input.select();
+
+      input.addEventListener("blur", function () {
+        setTimeout(function () {
+          // if the input hasn't been re-selected
+          if (document.activeElement !== input) {
+            $(anchor).popover("hide");
+          }
+        }, timeToFade);
+      });
     });
   },
 
