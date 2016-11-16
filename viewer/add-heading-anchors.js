@@ -46,18 +46,19 @@ var addHeadingAnchors = {
 
   createPopover: function (anchor, headingId) {
     var popover;
-    var inputId = "popover-" + headingId; 
+    var inputId = "popover-" + headingId;
     popover = $(anchor).popover({
       container: "body",
       title: "Share a link to this section",
       content: function () {
-        return "<input id='" + inputId +  "' value='" + anchor.href + "'>";
+        return "<input id='" + inputId + "' value='" + anchor.href + "'>";
       },
       html: true,
       trigger: "manual" // this disables it for clicks
     });
 
     popover.on("shown", function (e) {
+      // the contents of popover are lazy-created, so this unfortunately needs to go here.
       var input = document.getElementById(inputId);
       input.focus();
       input.select();
