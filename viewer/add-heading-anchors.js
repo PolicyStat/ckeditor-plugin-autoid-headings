@@ -67,11 +67,11 @@ var addHeadingAnchors = {
           // if the input hasn't been re-selected
           if (document.activeElement !== input) {
             $(anchor).popover("hide");
+            // TODO consider not removing it here, and instead, move it to a different once handler for shown.
             input.removeEventListener("blur", blurHandler);
           }
         }, timeToFade);
       };
-
       input.addEventListener("blur", blurHandler);
       input.focus();
       input.select();
