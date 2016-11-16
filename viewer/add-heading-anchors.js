@@ -1,6 +1,6 @@
 /*eslint-disable no-unused-vars*/
 var addHeadingAnchors = {
-/*eslint-enable no-unused-vars*/
+  /*eslint-enable no-unused-vars*/
 
   init: function (selector) {
     this.target = document.querySelector(selector);
@@ -45,19 +45,19 @@ var addHeadingAnchors = {
 
   createPopover: function (anchor) {
     $(anchor).popover({
-      container: 'body',
+      container: "body",
       title: "Share a link to this section",
       content: function () {
         return "<input value='" + anchor.href + "'>";
       },
       html: true,
-      //trigger: "manual" // this disables it for clicks
+      trigger: "manual" // this disables it for clicks
     });
   },
 
   registerClipboardHandler: function () {
     var clipboardErrorHandler = function (e) {
-
+      $(e.trigger).popover('show');
     };
     if (!this.handler) {
       this.handler = new Clipboard("a.headerLink");
