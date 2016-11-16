@@ -72,7 +72,7 @@ describe("addHeadingAnchors", function () {
       });
     });
 
-    it("copies to clipboard when clicking on links", function (done) {
+    it("fires the clipboardjs error callback when clicking on links", function (done) {
       // a quick alternative to spying
       var callCount = 0;
       var expectedCallCount = 6;
@@ -110,6 +110,10 @@ describe("addHeadingAnchors", function () {
 
         anchor.click();
       });
+
+    });
+
+    it("does a bootstrap popover as the default error callback", function () {
 
     });
   });

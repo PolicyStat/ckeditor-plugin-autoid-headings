@@ -43,9 +43,17 @@ var addHeadingAnchors = {
     return anchor;
   },
 
+  createPopover: function (anchor) {
+
+  },
+
   registerClipboardHandler: function () {
+    var clipboardErrorHandler = function (e) {
+
+    };
     if (!this.handler) {
       this.handler = new Clipboard("a.headerLink");
+      this.handler.on('error', clipboardErrorHandler);
     }
   }
 };
