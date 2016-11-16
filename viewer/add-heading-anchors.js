@@ -17,6 +17,7 @@ var addHeadingAnchors = {
     headings.forEach(function (heading) {
       var anchor = this.createAnchor(heading.id);
       heading.appendChild(anchor);
+      this.createPopover(anchor);
     }.bind(this));
   },
 
@@ -25,8 +26,7 @@ var addHeadingAnchors = {
     var icon = document.createElement("i");
     var attributes = {
       href: "#" + id,
-      class: "headerLink",
-      title: "Permalink to this headline"
+      class: "headerLink"
     };
 
     icon.setAttribute("class", "icon-share");
@@ -44,7 +44,14 @@ var addHeadingAnchors = {
   },
 
   createPopover: function (anchor) {
-
+    $(anchor).popover({
+      title: "Share a link to this section",
+      content: function () {
+        return "<input value='" + anchor.href + "'>";
+      },
+      html: true,
+      //trigger: "manual" // this disables it for clicks
+    });
   },
 
   registerClipboardHandler: function () {
@@ -53,7 +60,7 @@ var addHeadingAnchors = {
     };
     if (!this.handler) {
       this.handler = new Clipboard("a.headerLink");
-      this.handler.on('error', clipboardErrorHandler);
+      this.handler.on("error", clipboardErrorHandler);
     }
   }
 };

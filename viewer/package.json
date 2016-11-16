@@ -30,7 +30,8 @@
         },
         "globals": {
             "Clipboard": true,
-            "chai": true
+            "chai": true,
+            "jquery": true
         }
     }
 }
