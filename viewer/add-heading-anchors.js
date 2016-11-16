@@ -45,6 +45,7 @@ var addHeadingAnchors = {
 
   createPopover: function (anchor) {
     $(anchor).popover({
+      container: 'body',
       title: "Share a link to this section",
       content: function () {
         return "<input value='" + anchor.href + "'>";
