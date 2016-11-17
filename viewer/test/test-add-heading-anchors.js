@@ -4,8 +4,8 @@ var assert = chai.assert;
 
 describe("addHeadingAnchors", function () {
   before(function () {
-    this.testArea = document.getElementById("testarea");
-    addHeadingAnchors.init("#testarea", "#popovers");
+    this.testArea = document.getElementById("test-add-heading-anchors");
+    addHeadingAnchors.init("#test-add-heading-anchors", "#test-add-heading-anchors .popovers");
   });
 
   describe("HTML modification", function () {
