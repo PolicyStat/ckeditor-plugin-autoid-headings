@@ -112,10 +112,6 @@ describe("addHeadingAnchors", function () {
       });
 
     });
-
-    it("does a bootstrap popover as the default error callback", function () {
-
-    });
   });
 });
 
