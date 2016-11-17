@@ -68,7 +68,7 @@ describe("addHeadingAnchors", function () {
         anchor.click();
 
         // assert the address bar changed
-        assert(window.location.hash, href);
+        assert.equal(window.location.hash, href);
       });
     });
 
