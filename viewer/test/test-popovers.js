@@ -3,6 +3,8 @@
 var assert = chai.assert;
 
 describe("popovers", function () {
+  var NUM_HEADINGS = 6; // would be const, but you know.
+
   before(function () {
     this.testArea = document.getElementById("test-popovers");
     addHeadingAnchors.init("#test-popovers", "#test-popovers .popovers");
@@ -18,7 +20,7 @@ describe("popovers", function () {
 
     popoverChildCount = this.testArea.querySelector(".popovers").children.length;
 
-    assert.equal(popoverChildCount, 6);
+    assert.equal(popoverChildCount, NUM_HEADINGS);
   });
 
 });
