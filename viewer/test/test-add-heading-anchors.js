@@ -5,7 +5,7 @@ var assert = chai.assert;
 describe("addHeadingAnchors", function () {
   before(function () {
     this.testArea = document.getElementById("testarea");
-    addHeadingAnchors.init("#testarea");
+    addHeadingAnchors.init("#testarea", "#popovers");
   });
 
   describe("HTML modification", function () {

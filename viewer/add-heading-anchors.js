@@ -3,7 +3,8 @@ var addHeadingAnchors = {
   /*eslint-enable no-unused-vars*/
   TIME_TO_FADE: 1000,
 
-  init: function (selector) {
+  init: function (selector, popoverContainer) {
+    this.popoverContainer = popoverContainer || "body";
     this.target = document.querySelector(selector);
     if (this.target) {
       this.addAnchorsToHeadings();
@@ -50,7 +51,7 @@ var addHeadingAnchors = {
     var inputId = "popover-" + headingId;
     var timeToFade = this.TIME_TO_FADE;
     popover = $(anchor).popover({
-      container: "body",
+      container: this.popoverContainer,
       title: "Share a link to this section",
       content: function () {
         return "<input id='" + inputId + "' value='" + anchor.href + "'>";
