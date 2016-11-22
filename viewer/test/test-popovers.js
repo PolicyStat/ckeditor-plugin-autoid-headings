@@ -1,4 +1,4 @@
-/* global addHeadingAnchors:false */
+/* global addHeadingAnchors:false sinon:false */
 
 var assert = chai.assert;
 
@@ -23,6 +23,21 @@ describe("popovers", function () {
     assert.equal(popoverChildCount, NUM_HEADINGS);
   });
 
+  describe("mocked timer cases", function () {
+
+    beforeEach(function () {
+      this.clock = sinon.useFakeTimers();
+    });
+
+    afterEach(function () {
+      this.clock.restore();
+    });
+
+
+    it("displays the popover, which then fades when the input is blurred", function () {
+
+    });
+
+  });
+
 });
-
-
