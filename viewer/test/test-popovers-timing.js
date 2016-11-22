@@ -33,28 +33,22 @@ describe("popover timing", function () {
     popover = this.testArea.querySelector(".popovers .popover");
 
     // click into the text area
-
     input = popover.querySelector("input");
     input.focus();
 
     // wait more than the timeout
-
     clock.tick(INTERACTION_TIMEOUT);
 
     // check the popover is still visible
-
     assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
 
     // focus out of the popover
-
     input.blur();
 
     // wait for timeout
-
     clock.tick(INTERACTION_TIMEOUT);
 
     // check popover is hidden
-
     assert.isFalse(popover.classList.contains("in"), "popover is not hidden");
 
   });
