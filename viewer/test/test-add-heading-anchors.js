@@ -4,8 +4,8 @@ var assert = chai.assert;
 
 describe("addHeadingAnchors", function () {
   before(function () {
-    this.testArea = document.getElementById("testarea");
-    addHeadingAnchors.init("#testarea");
+    this.testArea = document.getElementById("test-add-heading-anchors");
+    addHeadingAnchors.init("#test-add-heading-anchors", "#test-add-heading-anchors .popovers");
   });
 
   describe("HTML modification", function () {
@@ -68,11 +68,11 @@ describe("addHeadingAnchors", function () {
         anchor.click();
 
         // assert the address bar changed
-        assert(window.location.hash, href);
+        assert.equal(window.location.hash, href);
       });
     });
 
-    it("copies to clipboard when clicking on links", function (done) {
+    it("fires the clipboardjs error callback when clicking on links", function (done) {
       // a quick alternative to spying
       var callCount = 0;
       var expectedCallCount = 6;
