@@ -1,4 +1,4 @@
-/* global addHeadingAnchors:false sinon:false */
+/* global addHeadingAnchors:false */
 
 var assert = chai.assert;
 

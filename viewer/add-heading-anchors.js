@@ -1,3 +1,5 @@
+/* eslint-env jquery */
+
 /*eslint-disable no-unused-vars*/
 var addHeadingAnchors = {
   /*eslint-enable no-unused-vars*/
@@ -68,7 +70,8 @@ var addHeadingAnchors = {
           // if the input hasn't been re-selected
           if (document.activeElement !== input) {
             $(anchor).popover("hide");
-            // TODO consider not removing it here, and instead, move it to a different once handler for shown.
+            // TODO consider not removing it here
+            // instead, move it to a different one-time handler for shown.
             input.removeEventListener("blur", blurHandler);
           }
         }, timeToFade);
