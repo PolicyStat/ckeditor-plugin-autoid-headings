@@ -3,7 +3,6 @@
 var assert = chai.assert;
 
 describe("popover timing", function () {
-  var NUM_HEADINGS = 6; // would be const, but you know.
   var INTERACTION_TIMEOUT = 1000; // actually, it's 500
   var clock;
 
