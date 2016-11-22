@@ -56,7 +56,7 @@ var addHeadingAnchors = {
       container: this.popoverContainer,
       title: "Share a link to this section",
       content: function () {
-        return "<input id='" + inputId + "' value='" + anchor.href + "'>";
+        return "<input readonly id='" + inputId + "' value='" + anchor.href + "'>";
       },
       html: true,
       trigger: "manual" // this disables it for clicks
