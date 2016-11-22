@@ -3,7 +3,7 @@
 var assert = chai.assert;
 
 describe("popover timing", function () {
-  var INTERACTION_TIMEOUT = 1000; // actually, it's 500
+  var INTERACTION_TIMEOUT = 1000;
   var clock;
 
   before(function () {
