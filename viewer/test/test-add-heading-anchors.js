@@ -42,7 +42,7 @@ describe("addHeadingAnchors", function () {
         assert.endsWith(clipboardDataAttribute, "#" + heading.getAttribute("id"));
       };
 
-      this.headingsWithAnId.forEach(assertHasCopyLink);
+      Array.prototype.forEach.call(this.headingsWithAnId, assertHasCopyLink);
     });
 
     it("did not add anchors inside non-id headings", function () {
@@ -53,7 +53,7 @@ describe("addHeadingAnchors", function () {
         assert.isNull(anchor);
       };
 
-      this.headingsWithoutAnId.forEach(assertNoAnchorAdded);
+      Array.prototype.forEach.call(this.headingsWithoutAnId, assertNoAnchorAdded);
     });
   });
 
@@ -63,7 +63,7 @@ describe("addHeadingAnchors", function () {
     });
 
     it("changes the address bar when clicking on links", function () {
-      this.clipboardAnchors.forEach(function assertClipboardCopy(anchor) {
+      Array.prototype.forEach.call(this.clipboardAnchors, function assertClipboardCopy(anchor) {
         var href = anchor.getAttribute("href");
         anchor.click();
 
@@ -77,7 +77,7 @@ describe("addHeadingAnchors", function () {
       var callCount = 0;
       var expectedCallCount = 6;
 
-      this.clipboardAnchors.forEach(function (anchor) {
+      Array.prototype.forEach.call(this.clipboardAnchors, function (anchor) {
 
         // Register a one time event handler to check the event text
         // this isn't a very good test due to the limitations.

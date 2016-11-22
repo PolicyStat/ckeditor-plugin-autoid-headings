@@ -14,7 +14,7 @@ describe("popovers", function () {
   it("creates the popover html when we 'click' each share button", function () {
     var popoverChildCount = 0;
 
-    this.clipboardAnchors.forEach(function assertClickCreatesPopover(anchor) {
+    Array.prototype.forEach.call(this.clipboardAnchors, function assertClickCreatesPopover(anchor) {
       anchor.click();
     });
 
