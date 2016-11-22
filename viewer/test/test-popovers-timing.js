@@ -4,6 +4,7 @@ var assert = chai.assert;
 
 describe("popover timing", function () {
   var NUM_HEADINGS = 6; // would be const, but you know.
+  var INTERACTION_TIMEOUT = 1000; // actually, it's 500
   var clock;
 
   before(function () {
@@ -22,6 +23,7 @@ describe("popover timing", function () {
 
   it("displays the popover, which then fades when the input is blurred", function () {
     var firstAnchor = this.clipboardAnchors[0];
+    var input;
     var popover;
 
     firstAnchor.click();
@@ -29,19 +31,32 @@ describe("popover timing", function () {
     // make sure nothing crazy happened like failed test cleanup
     assert.equal(1, this.testArea.querySelector(".popovers").children.length);
 
-    popover = this.testArea.querySelector(".popovers").children[0];
+    popover = this.testArea.querySelector(".popovers .popover");
 
     // click into the text area
 
+    input = popover.querySelector("input");
+    input.focus();
+
     // wait more than the timeout
+
+    clock.tick(INTERACTION_TIMEOUT);
 
     // check the popover is still visible
 
+    assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
+
     // focus out of the popover
+
+    input.blur();
 
     // wait for timeout
 
+    clock.tick(INTERACTION_TIMEOUT);
+
     // check popover is hidden
+
+    assert.isFalse(popover.classList.contains("in"), "popover is not hidden");
 
   });
 
