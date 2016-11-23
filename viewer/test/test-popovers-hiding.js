@@ -30,7 +30,7 @@ describe("popover timing", function () {
     unrelatedHeading.click();
 
     // check popover is hidden
-    assert.isFalse(popover.classList.contains("in"), "popover is now hidden");
+    assert.isFalse(popover.classList.contains("in"), "popover is hidden");
 
   });
 
@@ -76,7 +76,7 @@ describe("popover timing", function () {
     secondAnchor.click();
 
     // check popover is hidden
-    assert.isFalse(popover.classList.contains("in"), "popover is now hidden");
+    assert.isFalse(popover.classList.contains("in"), "popover is hidden");
   });
 
 });
