@@ -63,6 +63,8 @@ var addHeadingAnchors = {
     });
 
     popover.on("shown", function () {
+      $("a.headerLink").not(this).popover("hide");
+
       // the contents of popover are lazy-created, so this unfortunately needs to go here.
       var input = document.getElementById(inputId);
       var blurHandler = function () {
@@ -70,9 +72,6 @@ var addHeadingAnchors = {
           // if the input hasn't been re-selected
           if (document.activeElement !== input) {
             $(anchor).popover("hide");
-            // TODO consider not removing it here
-            // instead, move it to a different one-time handler for shown.
-            input.removeEventListener("blur", blurHandler);
           }
         }, timeToFade);
       };
