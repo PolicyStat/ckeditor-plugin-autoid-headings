@@ -79,7 +79,7 @@ var addHeadingAnchors = {
       var originalText = e.text;
       var clipboardContent = window.clipboardData.getData("Text");
       if (originalText !== clipboardContent) {
-        // actually, this was a failure.
+        // actually, this was a failure because the content didn't actually make it to clipboardData
         clipboardErrorHandler(e);
       }
     };
