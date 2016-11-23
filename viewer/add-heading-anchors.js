@@ -62,6 +62,8 @@ var addHeadingAnchors = {
     });
 
     popover.on("shown", function () {
+      // Hide all other popovers
+      // `this` is the anchor that triggered the shown event.
       $("a.headerLink").not(this).popover("hide");
       // the contents of popover are lazy-created, so this unfortunately needs to go here.
       var input = document.getElementById(inputId);
