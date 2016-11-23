@@ -75,9 +75,6 @@ describe("popover timing", function () {
     // click to trigger other popover
     secondAnchor.click();
 
-    // click on the anchor again
-    firstAnchor.click();
-
     // check popover is hidden
     assert.isFalse(popover.classList.contains("in"), "popover is now hidden");
   });
