@@ -18,7 +18,7 @@ var addHeadingAnchors = {
     var selectorString = "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]";
     var headings = this.target.querySelectorAll(selectorString);
 
-    headings.forEach(function (heading) {
+    Array.prototype.forEach.call(headings, function (heading) {
       var id = heading.id;
       var anchor = this.createAnchor(id);
       heading.appendChild(anchor);
