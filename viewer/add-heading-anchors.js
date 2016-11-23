@@ -3,7 +3,6 @@
 /*eslint-disable no-unused-vars*/
 var addHeadingAnchors = {
   /*eslint-enable no-unused-vars*/
-  TIME_TO_FADE: 1000,
 
   init: function (selector, popoverContainer) {
     this.popoverContainer = popoverContainer || "body";
@@ -11,6 +10,7 @@ var addHeadingAnchors = {
     if (this.target) {
       this.addAnchorsToHeadings();
       this.registerClipboardHandlers();
+      this.registerDismissPopoverHandler()
     }
   },
 
@@ -51,7 +51,6 @@ var addHeadingAnchors = {
   createPopover: function (anchor, headingId) {
     var popover;
     var inputId = "popover-" + headingId;
-    var timeToFade = this.TIME_TO_FADE;
     popover = $(anchor).popover({
       container: this.popoverContainer,
       title: "Share a link to this section",
@@ -64,18 +63,8 @@ var addHeadingAnchors = {
 
     popover.on("shown", function () {
       $("a.headerLink").not(this).popover("hide");
-
       // the contents of popover are lazy-created, so this unfortunately needs to go here.
       var input = document.getElementById(inputId);
-      var blurHandler = function () {
-        setTimeout(function () {
-          // if the input hasn't been re-selected
-          if (document.activeElement !== input) {
-            $(anchor).popover("hide");
-          }
-        }, timeToFade);
-      };
-      input.addEventListener("blur", blurHandler);
       input.focus();
       input.select();
     });
@@ -100,5 +89,13 @@ var addHeadingAnchors = {
       this.handler.on("error", clipboardErrorHandler);
       this.handler.on("success", ensureSuccessHandler);
     }
+  },
+
+  registerDismissPopoverHandler: function () {
+    $(this.target).click(function (e) {
+      if ($('a.headerLink').has(e.target).length === 0) {
+        $("a.headerLink").popover("hide");
+      }
+    });
   }
 };
