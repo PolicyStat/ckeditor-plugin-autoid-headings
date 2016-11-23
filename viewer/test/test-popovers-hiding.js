@@ -6,7 +6,8 @@ describe("popover timing", function () {
   before(function () {
     this.testArea = document.getElementById("test-popovers-timing");
     addHeadingAnchors.init("#test-popovers-timing", "#test-popovers-timing .popovers");
-    this.firstClipboardAnchor = this.testArea.querySelector("a[data-clipboard-text]");
+    this.firstClipboardAnchor = this.testArea.querySelectorAll("a[data-clipboard-text]")[0];
+    this.secondClipboardAnchor = this.testArea.querySelectorAll("a[data-clipboard-text]")[1];
     this.unrelatedHeading = this.testArea.querySelector("h2");
   });
 
@@ -26,7 +27,6 @@ describe("popover timing", function () {
     assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
 
     // click something else
-
     unrelatedHeading.click();
 
     // check popover is hidden
@@ -49,16 +49,37 @@ describe("popover timing", function () {
     assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
 
     // click on the popover
-
     popover.click();
 
     // click on the anchor again
+    firstAnchor.click();
+
+    // check popover is not hidden
+    assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
+  });
+
+  it("displays the popover and does not blur if a different popover is shown", function () {
+    var firstAnchor = this.firstClipboardAnchor;
+    var secondAnchor = this.secondClipboardAnchor;
+    var popover;
 
     firstAnchor.click();
 
-    // check popover is hidden
+    // make sure nothing crazy happened like failed test cleanup
+    assert.equal(1, this.testArea.querySelector(".popovers").children.length);
+    popover = this.testArea.querySelector(".popovers .popover");
+
+    // check the popover is still visible
     assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
 
+    // click to trigger other popover
+    secondAnchor.click();
+
+    // click on the anchor again
+    firstAnchor.click();
+
+    // check popover is hidden
+    assert.isFalse(popover.classList.contains("in"), "popover is now hidden");
   });
 
 });
