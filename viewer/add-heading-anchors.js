@@ -10,7 +10,7 @@ var addHeadingAnchors = {
     if (this.target) {
       this.addAnchorsToHeadings();
       this.registerClipboardHandlers();
-      this.registerDismissPopoverHandler()
+      this.registerDismissPopoverHandler();
     }
   },
 
@@ -93,7 +93,7 @@ var addHeadingAnchors = {
 
   registerDismissPopoverHandler: function () {
     $(this.target).click(function (e) {
-      if ($('a.headerLink').has(e.target).length === 0) {
+      if ($("a.headerLink").has(e.target).length === 0) {
         $("a.headerLink").popover("hide");
       }
     });
