@@ -4,8 +4,8 @@ var assert = chai.assert;
 
 describe("popover timing", function () {
   before(function () {
-    this.testArea = document.getElementById("test-popovers-timing");
-    addHeadingAnchors.init("#test-popovers-timing", "#test-popovers-timing .popovers");
+    this.testArea = document.getElementById("test-popovers-hiding");
+    addHeadingAnchors.init("#test-popovers-hiding", "#test-popovers-hiding .popovers");
     this.firstClipboardAnchor = this.testArea.querySelectorAll("a[data-clipboard-text]")[0];
     this.secondClipboardAnchor = this.testArea.querySelectorAll("a[data-clipboard-text]")[1];
     this.unrelatedHeading = this.testArea.querySelector("h2");
