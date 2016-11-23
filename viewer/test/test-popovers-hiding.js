@@ -20,16 +20,11 @@ describe("popover timing", function () {
 
     // make sure nothing crazy happened like failed test cleanup
     assert.equal(1, this.testArea.querySelector(".popovers").children.length);
-
     popover = this.testArea.querySelector(".popovers .popover");
-
-    // check the popover is still visible
     assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
 
     // click something else
     unrelatedHeading.click();
-
-    // check popover is hidden
     assert.isFalse(popover.classList.contains("in"), "popover is hidden");
 
   });
@@ -42,10 +37,7 @@ describe("popover timing", function () {
 
     // make sure nothing crazy happened like failed test cleanup
     assert.equal(1, this.testArea.querySelector(".popovers").children.length);
-
     popover = this.testArea.querySelector(".popovers .popover");
-
-    // check the popover is still visible
     assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
 
     // click on the popover
@@ -53,8 +45,6 @@ describe("popover timing", function () {
 
     // click on the anchor again
     firstAnchor.click();
-
-    // check popover is not hidden
     assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
   });
 
@@ -69,13 +59,10 @@ describe("popover timing", function () {
     assert.equal(1, this.testArea.querySelector(".popovers").children.length);
     popover = this.testArea.querySelector(".popovers .popover");
 
-    // check the popover is still visible
     assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
 
     // click to trigger other popover
     secondAnchor.click();
-
-    // check popover is hidden
     assert.isFalse(popover.classList.contains("in"), "popover is hidden");
   });
 
