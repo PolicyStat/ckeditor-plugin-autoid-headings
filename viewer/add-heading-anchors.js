@@ -93,6 +93,7 @@ var addHeadingAnchors = {
 
   registerDismissPopoverHandler: function () {
     $(this.target).click(function (e) {
+      // if clicking a non-popover-ed element
       if ($("a.headerLink").has(e.target).length === 0) {
         $("a.headerLink").popover("hide");
       }
