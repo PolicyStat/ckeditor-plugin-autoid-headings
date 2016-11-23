@@ -10,7 +10,7 @@ var addHeadingAnchors = {
     this.target = document.querySelector(selector);
     if (this.target) {
       this.addAnchorsToHeadings();
-      this.registerClipboardHandler();
+      this.registerClipboardHandlers();
     }
   },
 
@@ -56,7 +56,7 @@ var addHeadingAnchors = {
       container: this.popoverContainer,
       title: "Share a link to this section",
       content: function () {
-        return "<input id='" + inputId + "' value='" + anchor.href + "'>";
+        return "<input readonly id='" + inputId + "' value='" + anchor.href + "'>";
       },
       html: true,
       trigger: "manual" // this disables it for clicks
@@ -82,13 +82,24 @@ var addHeadingAnchors = {
     });
   },
 
-  registerClipboardHandler: function () {
+  registerClipboardHandlers: function () {
     var clipboardErrorHandler = function (e) {
       $(e.trigger).popover("show");
     };
+
+    var ensureSuccessHandler = function (e) {
+      var originalText = e.text;
+      var clipboardContent = window.clipboardData.getData("Text");
+      if (originalText !== clipboardContent) {
+        // actually, this was a failure.
+        clipboardErrorHandler(e);
+      }
+    };
+
     if (!this.handler) {
       this.handler = new Clipboard("a.headerLink");
       this.handler.on("error", clipboardErrorHandler);
+      this.handler.on("success", ensureSuccessHandler);
     }
   }
 };
