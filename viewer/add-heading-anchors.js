@@ -127,7 +127,7 @@ var addHeadingAnchors = {
   },
 
   registerJumpPreventer: function () {
-    $("a.headerLink").click(function (e) {
+    $(this.target).find("a.headerLink").click(function (e) {
       var hash = this.getAttribute("href");
       // this stops the default behaviour, which is to
       // set the location hash
