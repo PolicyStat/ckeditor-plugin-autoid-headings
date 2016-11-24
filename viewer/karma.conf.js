@@ -18,6 +18,7 @@ module.exports = function (config) {
       "https://code.jquery.com/jquery-1.12.4.js",
       "https://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js",
       "node_modules/clipboard/dist/clipboard.js",
+      "add-heading-anchors.js",
       "test/**/*.js"
     ],
 
