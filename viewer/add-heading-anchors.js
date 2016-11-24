@@ -79,11 +79,15 @@ var addHeadingAnchors = {
 
     var ensureSuccessHandler = function (e) {
       var originalText = e.text;
-      var clipboardContent = window.clipboardData.getData("Text");
-      if (originalText !== clipboardContent) {
-        // actually, this was a failure because the content didn't actually make it to clipboardData
-        clipboardErrorHandler(e);
+      if (window.clipboardData) {
+        // IE only
+        var clipboardContent = window.clipboardData.getData("Text");
+        if (originalText !== clipboardContent) {
+          clipboardErrorHandler(e);
+          return;
+        }
       }
+      $(e.trigger).tooltip("show");
     };
 
     if (!this.handler) {
