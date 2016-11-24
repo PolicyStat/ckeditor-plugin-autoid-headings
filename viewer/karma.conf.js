@@ -19,7 +19,8 @@ module.exports = function (config) {
       "https://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js",
       "node_modules/clipboard/dist/clipboard.js",
       "add-heading-anchors.js",
-      "test/**/*.js"
+      "test/**/*.js",
+      "fixtures/*/*.html",
     ],
 
 
@@ -31,6 +32,7 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      '**/*.html'   : ['html2js'],
     },
 
 
