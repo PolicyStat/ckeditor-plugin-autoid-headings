@@ -3,6 +3,7 @@
 /*eslint-disable no-unused-vars*/
 var addHeadingAnchors = {
   /*eslint-enable no-unused-vars*/
+  TOOLTIP_TTL: 500,
 
   init: function (selector, popoverContainer) {
     this.popoverContainer = popoverContainer || "body";
@@ -23,6 +24,7 @@ var addHeadingAnchors = {
       var anchor = this.createAnchor(id);
       heading.appendChild(anchor);
       this.createPopover(anchor, id);
+      this.createSuccessTooltip(anchor);
     }.bind(this));
   },
 
@@ -62,28 +64,49 @@ var addHeadingAnchors = {
     });
 
     popover.on("shown", function () {
+      // warning:  due to a BS2 implementation detail, this handler ALSO fires
+      // when success tooltip is shown
+
       // Hide all other popovers
       // `this` is the anchor that triggered the shown event.
       $("a.headerLink").not(this).popover("hide");
       // the contents of popover are lazy-created, so this unfortunately needs to go here.
       var input = document.getElementById(inputId);
-      input.focus();
-      input.select();
+
+      if (input) {
+        input.focus();
+        input.select();
+      }
+    });
+  },
+
+  createSuccessTooltip: function (anchor) {
+    $(anchor).tooltip({
+      title: "Link copied!",
+      trigger: "manual"
     });
   },
 
   registerClipboardHandlers: function () {
+    var TOOLTIP_TTL = this.TOOLTIP_TTL;
     var clipboardErrorHandler = function (e) {
       $(e.trigger).popover("show");
     };
 
     var ensureSuccessHandler = function (e) {
       var originalText = e.text;
-      var clipboardContent = window.clipboardData.getData("Text");
-      if (originalText !== clipboardContent) {
-        // actually, this was a failure because the content didn't actually make it to clipboardData
-        clipboardErrorHandler(e);
+      if (window.clipboardData) {
+        // IE only
+        var clipboardContent = window.clipboardData.getData("Text");
+        if (originalText !== clipboardContent) {
+          clipboardErrorHandler(e);
+          return;
+        }
       }
+      $(e.trigger).tooltip("show");
+      setTimeout(function () {
+        $(e.trigger).tooltip("hide");
+      }, TOOLTIP_TTL);
     };
 
     if (!this.handler) {
