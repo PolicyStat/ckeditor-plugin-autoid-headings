@@ -20,7 +20,7 @@ module.exports = function (config) {
       "node_modules/clipboard/dist/clipboard.js",
       "add-heading-anchors.js",
       "test/**/*.js",
-      "fixtures/*/*.html",
+      "fixtures/**/*.html",
     ],
 
 

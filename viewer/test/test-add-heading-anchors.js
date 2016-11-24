@@ -1,15 +1,25 @@
-/* global addHeadingAnchors:false */
+/* global addHeadingAnchors:false fixture*/
 
 var assert = chai.assert;
 
 describe("addHeadingAnchors", function () {
   before(function () {
-    this.testArea = document.getElementById("test-add-heading-anchors");
-    addHeadingAnchors.init("#test-add-heading-anchors", "#test-add-heading-anchors .popovers");
+    fixture.setBase('fixtures');
   });
 
+  beforeEach(function () {
+    fixture.load('heading-fixtures.html');
+    this.testArea = fixture.el.firstChild;
+    addHeadingAnchors.init("#test-add-heading-anchors", "#test-add-heading-anchors .popovers");
+  })
+
+
+  afterEach(function() {
+    fixture.cleanup();
+  })
+
   describe("HTML modification", function () {
-    before(function () {
+    beforeEach(function () {
       this.headingsWithAnId = this.testArea.querySelectorAll(
         "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]"
       );
@@ -58,7 +68,7 @@ describe("addHeadingAnchors", function () {
   });
 
   describe("click handling", function () {
-    before(function () {
+    beforeEach(function () {
       this.clipboardAnchors = this.testArea.querySelectorAll("a[data-clipboard-text]");
     });
 
