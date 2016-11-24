@@ -132,8 +132,8 @@ var addHeadingAnchors = {
       e.preventDefault();
       hash = this.getAttribute("href");
 
-      if (window.history.pushState) {
-        window.history.pushState(null, null, hash);
+      if (window.history.replaceState) {
+        window.history.replaceState(null, null, hash);
       } else {
         // fallback for no history API - this will jump
         window.location.hash = hash;
