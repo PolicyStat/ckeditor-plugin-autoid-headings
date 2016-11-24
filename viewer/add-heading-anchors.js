@@ -23,6 +23,7 @@ var addHeadingAnchors = {
       var anchor = this.createAnchor(id);
       heading.appendChild(anchor);
       this.createPopover(anchor, id);
+      this.createSuccessTooltip(anchor);
     }.bind(this));
   },
 
@@ -69,6 +70,21 @@ var addHeadingAnchors = {
       var input = document.getElementById(inputId);
       input.focus();
       input.select();
+    });
+  },
+
+  createSuccessTooltip: function (anchor) {
+    var tooltip;
+
+    tooltip = $(anchor).tooltip({
+      title: "Link copied!",
+      trigger: "manual"
+    });
+
+    tooltip.on("shown", function () {
+      setTimeout(function () {
+        $(anchor).tooltip('hide');
+      }, 500);
     });
   },
 
