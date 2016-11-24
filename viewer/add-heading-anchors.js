@@ -128,14 +128,15 @@ var addHeadingAnchors = {
 
   registerJumpPreventer: function () {
     $("a.headerLink").click(function (e) {
-      var hash;
+      var hash = this.getAttribute("href");
+      // this stops the default behaviour, which is to
+      // set the location hash
       e.preventDefault();
-      hash = this.getAttribute("href");
 
       if (window.history.replaceState) {
         window.history.replaceState(null, null, hash);
       } else {
-        // fallback for no history API - this will jump
+        // fallback for no history API - this will still jump
         window.location.hash = hash;
       }
     });
