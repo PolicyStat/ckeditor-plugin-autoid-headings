@@ -12,6 +12,7 @@ var addHeadingAnchors = {
       this.addAnchorsToHeadings();
       this.registerClipboardHandlers();
       this.registerDismissPopoverHandler();
+      this.registerJumpPreventer();
     }
   },
 
@@ -123,5 +124,21 @@ var addHeadingAnchors = {
         $("a.headerLink").popover("hide");
       }
     });
+  },
+
+  registerJumpPreventer: function () {
+    $("a.headerLink").click(function (e) {
+      var hash;
+      e.preventDefault();
+      hash = this.getAttribute("href");
+
+      if (window.history.pushState) {
+        window.history.pushState(null, null, hash);
+      } else {
+        // fallback for no history API - this will jump
+        window.location.hash = hash;
+      }
+    });
+
   }
 };
