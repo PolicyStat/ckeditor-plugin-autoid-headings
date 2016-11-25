@@ -9,8 +9,8 @@ describe("addHeadingAnchors", function () {
 
   beforeEach(function () {
     fixture.load("heading-fixtures.html");
-    this.testArea = fixture.el.firstChild;
-    addHeadingAnchors.init("#testarea", "#testarea .popovers");
+    this.testcontainer = fixture.el.firstChild;
+    addHeadingAnchors.init("#testcontainer", "#testcontainer .popovers");
   });
 
 
@@ -20,10 +20,10 @@ describe("addHeadingAnchors", function () {
 
   describe("HTML modification", function () {
     beforeEach(function () {
-      this.headingsWithAnId = this.testArea.querySelectorAll(
+      this.headingsWithAnId = this.testcontainer.querySelectorAll(
         "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]"
       );
-      this.headingsWithoutAnId = this.testArea.querySelectorAll(
+      this.headingsWithoutAnId = this.testcontainer.querySelectorAll(
         "h1:not([id]), h2:not([id]), h3:not([id]), h4:not([id]), h5:not([id]), h6:not([id])"
       );
     });
@@ -69,7 +69,7 @@ describe("addHeadingAnchors", function () {
 
   describe("click handling", function () {
     beforeEach(function () {
-      this.clipboardAnchors = this.testArea.querySelectorAll("a[data-clipboard-text]");
+      this.clipboardAnchors = this.testcontainer.querySelectorAll("a[data-clipboard-text]");
     });
 
     it("changes the address bar when clicking on links", function () {
