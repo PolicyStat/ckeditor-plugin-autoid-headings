@@ -10,7 +10,7 @@ describe("addHeadingAnchors", function () {
   beforeEach(function () {
     fixture.load('heading-fixtures.html');
     this.testArea = fixture.el.firstChild;
-    addHeadingAnchors.init("#test-add-heading-anchors", "#test-add-heading-anchors .popovers");
+    addHeadingAnchors.init("#testarea", "#testarea .popovers");
   })
 
 
@@ -35,7 +35,7 @@ describe("addHeadingAnchors", function () {
         var clipboardDataAttribute;
 
         // is element
-        assert.equal(anchor.nodeType, 1);
+        assert.equal(anchor.nodeType, 1, "anchor should be the last child");
 
         // is an anchor
         assert.equal(anchor.nodeName, "A");

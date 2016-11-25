@@ -4,11 +4,21 @@ var assert = chai.assert;
 
 describe("popover timing", function () {
   before(function () {
-    this.testArea = document.getElementById("test-popovers-hiding");
-    addHeadingAnchors.init("#test-popovers-hiding", "#test-popovers-hiding .popovers");
+    fixture.setBase('fixtures');
+  });
+
+  beforeEach(function () {
+    fixture.load('heading-fixtures.html');
+    this.testArea = fixture.el.firstChild;
+    addHeadingAnchors.init("#testarea", "#testarea .popovers");
     this.firstClipboardAnchor = this.testArea.querySelectorAll("a[data-clipboard-text]")[0];
     this.secondClipboardAnchor = this.testArea.querySelectorAll("a[data-clipboard-text]")[1];
     this.unrelatedHeading = this.testArea.querySelector("h2");
+  });
+
+
+  afterEach(function() {
+    fixture.cleanup();
   });
 
   it("displays the popover, which then fades when something else is clicked", function () {
