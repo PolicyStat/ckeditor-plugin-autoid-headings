@@ -1,14 +1,24 @@
-/* global addHeadingAnchors:false */
+/* global addHeadingAnchors:false fixture */
 
 var assert = chai.assert;
 
 describe("popover timing", function () {
   before(function () {
-    this.testArea = document.getElementById("test-popovers-hiding");
-    addHeadingAnchors.init("#test-popovers-hiding", "#test-popovers-hiding .popovers");
-    this.firstClipboardAnchor = this.testArea.querySelectorAll("a[data-clipboard-text]")[0];
-    this.secondClipboardAnchor = this.testArea.querySelectorAll("a[data-clipboard-text]")[1];
-    this.unrelatedHeading = this.testArea.querySelector("h2");
+    fixture.setBase("fixtures");
+  });
+
+  beforeEach(function () {
+    fixture.load("heading-fixtures.html");
+    this.testcontainer = fixture.el.firstChild;
+    addHeadingAnchors.init("#testcontainer", "#testcontainer .popovers");
+    this.firstClipboardAnchor = this.testcontainer.querySelectorAll("a[data-clipboard-text]")[0];
+    this.secondClipboardAnchor = this.testcontainer.querySelectorAll("a[data-clipboard-text]")[1];
+    this.unrelatedHeading = this.testcontainer.querySelector("h2");
+  });
+
+
+  afterEach(function () {
+    fixture.cleanup();
   });
 
   it("displays the popover, which then fades when something else is clicked", function () {
@@ -19,8 +29,8 @@ describe("popover timing", function () {
     firstAnchor.click();
 
     // make sure nothing crazy happened like failed test cleanup
-    assert.equal(1, this.testArea.querySelector(".popovers").children.length);
-    popover = this.testArea.querySelector(".popovers .popover");
+    assert.equal(1, this.testcontainer.querySelector(".popovers").children.length);
+    popover = this.testcontainer.querySelector(".popovers .popover");
     assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
 
     // click something else
@@ -36,8 +46,8 @@ describe("popover timing", function () {
     firstAnchor.click();
 
     // make sure nothing crazy happened like failed test cleanup
-    assert.equal(1, this.testArea.querySelector(".popovers").children.length);
-    popover = this.testArea.querySelector(".popovers .popover");
+    assert.equal(1, this.testcontainer.querySelector(".popovers").children.length);
+    popover = this.testcontainer.querySelector(".popovers .popover");
     assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
 
     // click on the popover
@@ -56,8 +66,8 @@ describe("popover timing", function () {
     firstAnchor.click();
 
     // make sure nothing crazy happened like failed test cleanup
-    assert.equal(1, this.testArea.querySelector(".popovers").children.length);
-    popover = this.testArea.querySelector(".popovers .popover");
+    assert.equal(1, this.testcontainer.querySelector(".popovers").children.length);
+    popover = this.testcontainer.querySelector(".popovers .popover");
 
     assert.isTrue(popover.classList.contains("in"), "popover is not hidden");
 

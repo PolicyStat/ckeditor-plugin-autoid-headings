@@ -1,19 +1,29 @@
-/* global addHeadingAnchors:false */
+/* global addHeadingAnchors:false fixture*/
 
 var assert = chai.assert;
 
 describe("addHeadingAnchors", function () {
   before(function () {
-    this.testArea = document.getElementById("test-add-heading-anchors");
-    addHeadingAnchors.init("#test-add-heading-anchors", "#test-add-heading-anchors .popovers");
+    fixture.setBase("fixtures");
+  });
+
+  beforeEach(function () {
+    fixture.load("heading-fixtures.html");
+    this.testcontainer = fixture.el.firstChild;
+    addHeadingAnchors.init("#testcontainer", "#testcontainer .popovers");
+  });
+
+
+  afterEach(function () {
+    fixture.cleanup();
   });
 
   describe("HTML modification", function () {
-    before(function () {
-      this.headingsWithAnId = this.testArea.querySelectorAll(
+    beforeEach(function () {
+      this.headingsWithAnId = this.testcontainer.querySelectorAll(
         "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]"
       );
-      this.headingsWithoutAnId = this.testArea.querySelectorAll(
+      this.headingsWithoutAnId = this.testcontainer.querySelectorAll(
         "h1:not([id]), h2:not([id]), h3:not([id]), h4:not([id]), h5:not([id]), h6:not([id])"
       );
     });
@@ -25,7 +35,7 @@ describe("addHeadingAnchors", function () {
         var clipboardDataAttribute;
 
         // is element
-        assert.equal(anchor.nodeType, 1);
+        assert.equal(anchor.nodeType, 1, "anchor should be the last child");
 
         // is an anchor
         assert.equal(anchor.nodeName, "A");
@@ -58,8 +68,8 @@ describe("addHeadingAnchors", function () {
   });
 
   describe("click handling", function () {
-    before(function () {
-      this.clipboardAnchors = this.testArea.querySelectorAll("a[data-clipboard-text]");
+    beforeEach(function () {
+      this.clipboardAnchors = this.testcontainer.querySelectorAll("a[data-clipboard-text]");
     });
 
     it("changes the address bar when clicking on links", function () {
