@@ -11,9 +11,9 @@ describe("popovers", function () {
 
   beforeEach(function () {
     fixture.load("heading-fixtures.html");
-    this.testArea = fixture.el.firstChild;
-    addHeadingAnchors.init("#testarea", "#testarea .popovers");
-    this.clipboardAnchors = this.testArea.querySelectorAll("a[data-clipboard-text]");
+    this.testcontainer = fixture.el.firstChild;
+    addHeadingAnchors.init("#testcontainer", "#testcontainer .popovers");
+    this.clipboardAnchors = this.testcontainer.querySelectorAll("a[data-clipboard-text]");
   });
 
   afterEach(function () {
@@ -27,7 +27,7 @@ describe("popovers", function () {
       anchor.click();
     });
 
-    popoverChildCount = this.testArea.querySelector(".popovers").children.length;
+    popoverChildCount = this.testcontainer.querySelector(".popovers").children.length;
 
     assert.equal(popoverChildCount, NUM_HEADINGS);
   });
