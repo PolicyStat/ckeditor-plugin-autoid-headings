@@ -8,4 +8,6 @@ before_script:
 env:
   - TEST_DIR=.
   - TEST_DIR=viewer
-script: cd $TEST_DIR && npm install && npm test
+script:
+  - 'cd $TEST_DIR && npm install && npm test'
+  - 'cd viewer && npm run-script eslint'
