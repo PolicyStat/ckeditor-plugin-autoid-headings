@@ -15,6 +15,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
+      "node_modules/chai-string/chai-string.js",
       "https://code.jquery.com/jquery-1.12.4.js",
       "https://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js",
       "node_modules/clipboard/dist/clipboard.js",

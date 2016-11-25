@@ -12,7 +12,7 @@ describe("popovers", function () {
   beforeEach(function () {
     fixture.load('heading-fixtures.html');
     this.testArea = fixture.el.firstChild;
-    addHeadingAnchors.init("#testarea", "testarea .popovers");
+    addHeadingAnchors.init("#testarea", "#testarea .popovers");
     this.clipboardAnchors = this.testArea.querySelectorAll("a[data-clipboard-text]");
   });
 
