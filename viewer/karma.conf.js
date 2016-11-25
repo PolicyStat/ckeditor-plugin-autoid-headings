@@ -21,7 +21,7 @@ module.exports = function (config) {
       "node_modules/clipboard/dist/clipboard.js",
       "add-heading-anchors.js",
       "test/**/*.js",
-      "fixtures/**/*.html",
+      "fixtures/**/*.html"
     ],
 
 
@@ -33,7 +33,7 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*.html'   : ['html2js'],
+      "**/*.html": ["html2js"]
     },
 
 
@@ -52,8 +52,8 @@ module.exports = function (config) {
 
 
     // level of logging
-    // possible values:
-    // config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // eslint-disable-next-line max-len
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
 

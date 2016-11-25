@@ -4,19 +4,19 @@ var assert = chai.assert;
 
 describe("addHeadingAnchors", function () {
   before(function () {
-    fixture.setBase('fixtures');
+    fixture.setBase("fixtures");
   });
 
   beforeEach(function () {
-    fixture.load('heading-fixtures.html');
+    fixture.load("heading-fixtures.html");
     this.testArea = fixture.el.firstChild;
     addHeadingAnchors.init("#testarea", "#testarea .popovers");
-  })
+  });
 
 
-  afterEach(function() {
+  afterEach(function () {
     fixture.cleanup();
-  })
+  });
 
   describe("HTML modification", function () {
     beforeEach(function () {

@@ -1,14 +1,14 @@
-/* global addHeadingAnchors:false */
+/* global addHeadingAnchors:false fixture */
 
 var assert = chai.assert;
 
 describe("popover timing", function () {
   before(function () {
-    fixture.setBase('fixtures');
+    fixture.setBase("fixtures");
   });
 
   beforeEach(function () {
-    fixture.load('heading-fixtures.html');
+    fixture.load("heading-fixtures.html");
     this.testArea = fixture.el.firstChild;
     addHeadingAnchors.init("#testarea", "#testarea .popovers");
     this.firstClipboardAnchor = this.testArea.querySelectorAll("a[data-clipboard-text]")[0];
@@ -17,7 +17,7 @@ describe("popover timing", function () {
   });
 
 
-  afterEach(function() {
+  afterEach(function () {
     fixture.cleanup();
   });
 
