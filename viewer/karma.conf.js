@@ -2,6 +2,7 @@
 // Generated on Thu Nov 24 2016 13:10:00 GMT-0800 (PST)
 
 module.exports = function (config) {
+  var isTravis = process.env.TRAVIS ? true : false;
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -63,12 +64,12 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ["Firefox", process.env.TRAVIS ? 'chromeTravis' : 'Chrome'],
+    browsers: ["Firefox", isTravis ? 'chromeTravis' : 'Chrome'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: isTravis,
 
     // Concurrency level
     // how many browser should be started simultaneous
