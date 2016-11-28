@@ -37,7 +37,7 @@ var addHeadingAnchors = {
       class: "headerLink"
     };
 
-    icon.setAttribute("class", "icon-share");
+    icon.setAttribute("class", "icon-fixed-width icon-share");
 
     anchor.appendChild(icon);
 
@@ -83,7 +83,7 @@ var addHeadingAnchors = {
 
   createSuccessTooltip: function (anchor) {
     $(anchor).tooltip({
-      title: "Link copied!",
+      title: "Link Copied!",
       trigger: "manual"
     });
   },
