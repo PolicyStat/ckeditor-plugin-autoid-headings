@@ -67,10 +67,10 @@ describe("addHeadingAnchors", function () {
     });
 
     it("does not add more anchors if init is called more than once", function () {
-      var count = this.testContainer.querySelectorAll("a.headerLink").length;
+      var count = this.testcontainer.querySelectorAll("a.headerLink").length;
       var newCount;
       addHeadingAnchors.init("#testcontainer", "#testcontainer .popovers");
-      newCount = this.testContainer.querySelectorAll("a.headerLink").length;
+      newCount = this.testcontainer.querySelectorAll("a.headerLink").length;
       assert.equal(newCount, count);
     });
   });
