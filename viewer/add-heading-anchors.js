@@ -22,10 +22,13 @@ var addHeadingAnchors = {
 
     Array.prototype.forEach.call(headings, function (heading) {
       var id = heading.id;
-      var anchor = this.createAnchor(id);
-      heading.appendChild(anchor);
-      this.createPopover(anchor, id);
-      this.createSuccessTooltip(anchor);
+      // only add if no existing anchor
+      if (!heading.querySelector("a.headerLink")) {
+        var anchor = this.createAnchor(id);
+        heading.appendChild(anchor);
+        this.createPopover(anchor, id);
+        this.createSuccessTooltip(anchor);
+      }
     }.bind(this));
   },
 
@@ -37,7 +40,7 @@ var addHeadingAnchors = {
       class: "headerLink"
     };
 
-    icon.setAttribute("class", "icon-share");
+    icon.setAttribute("class", "icon-fixed-width icon-share");
 
     anchor.appendChild(icon);
 
@@ -83,7 +86,7 @@ var addHeadingAnchors = {
 
   createSuccessTooltip: function (anchor) {
     $(anchor).tooltip({
-      title: "Link copied!",
+      title: "Link Copied!",
       trigger: "manual"
     });
   },
