@@ -65,6 +65,14 @@ describe("addHeadingAnchors", function () {
 
       Array.prototype.forEach.call(this.headingsWithoutAnId, assertNoAnchorAdded);
     });
+
+    it("does not add more anchors if init is called more than once", function () {
+      var count = this.testContainer.querySelectorAll("a.headerLink").length;
+      var newCount;
+      addHeadingAnchors.init("#testcontainer", "#testcontainer .popovers");
+      newCount = this.testContainer.querySelectorAll("a.headerLink").length;
+      assert.equal(newCount, count);
+    });
   });
 
   describe("click handling", function () {

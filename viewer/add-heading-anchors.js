@@ -22,10 +22,13 @@ var addHeadingAnchors = {
 
     Array.prototype.forEach.call(headings, function (heading) {
       var id = heading.id;
-      var anchor = this.createAnchor(id);
-      heading.appendChild(anchor);
-      this.createPopover(anchor, id);
-      this.createSuccessTooltip(anchor);
+      // only add if no existing anchor
+      if (!heading.querySelector("a.headerLink")) {
+        var anchor = this.createAnchor(id);
+        heading.appendChild(anchor);
+        this.createPopover(anchor, id);
+        this.createSuccessTooltip(anchor);
+      }
     }.bind(this));
   },
 
