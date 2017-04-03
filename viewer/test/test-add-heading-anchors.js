@@ -80,35 +80,6 @@ describe("addHeadingAnchors", function () {
       this.clipboardAnchors = this.testcontainer.querySelectorAll("a[data-clipboard-text]");
     });
 
-    it("changes the address bar when clicking on links", function () {
-      Array.prototype.forEach.call(this.clipboardAnchors, function assertClipboardCopy(anchor) {
-        var href = anchor.getAttribute("href");
-        anchor.click();
-
-        // assert the address bar changed
-        assert.equal(window.location.hash, href);
-      });
-    });
-
-    it("does not scroll when clicking on links", function () {
-      var clickAndAssertScrollUnchanged = function (anchor) {
-        var oldScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        var newScrollTop;
-
-        anchor.click();
-
-        newScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-
-        assert.equal(
-          newScrollTop,
-          oldScrollTop,
-          "scroll top should match the stored value from before clicking"
-        );
-      };
-
-      Array.prototype.forEach.call(this.clipboardAnchors, clickAndAssertScrollUnchanged);
-    });
-
     it("fires the clipboardjs error callback when clicking on links", function (done) {
       // a quick alternative to spying
       var callCount = 0;
