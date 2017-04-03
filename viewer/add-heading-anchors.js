@@ -12,6 +12,7 @@ var addHeadingAnchors = {
       this.addAnchorsToHeadings();
       this.registerClipboardHandlers();
       this.registerDismissPopoverHandler();
+      this.registerJumpPreventer();
     }
   },
 
