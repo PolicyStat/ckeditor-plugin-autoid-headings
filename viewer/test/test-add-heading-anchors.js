@@ -10,7 +10,8 @@ describe("addHeadingAnchors", function () {
   beforeEach(function () {
     fixture.load("heading-fixtures.html");
     this.testcontainer = fixture.el.firstChild;
-    addHeadingAnchors.init("#testcontainer", "#testcontainer .popovers");
+    this.spy = chai.spy();
+    addHeadingAnchors.init("#testcontainer", "#testcontainer .popovers", this.spy);
   });
 
 
