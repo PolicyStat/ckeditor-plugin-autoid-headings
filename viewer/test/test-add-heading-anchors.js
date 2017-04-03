@@ -111,9 +111,9 @@ describe("addHeadingAnchors", function () {
     });
 
     it("fires the clipboardjs error callback when clicking on links", function (done) {
-      // a quick alternative to spying
       var callCount = 0;
       var expectedCallCount = 6;
+      var postCopySpy = this.spy;
 
       Array.prototype.forEach.call(this.clipboardAnchors, function (anchor) {
 
@@ -138,6 +138,7 @@ describe("addHeadingAnchors", function () {
           // If we somehow don't add all 6 headings,
           // this test will fail because the callback is not fired
           if (callCount === expectedCallCount) {
+            postCopySpy.should.have.been.called.exactly(expectedCallCount);
             done();
           }
         };
@@ -147,6 +148,7 @@ describe("addHeadingAnchors", function () {
         // click on all the anchors
 
         anchor.click();
+
       });
 
     });
