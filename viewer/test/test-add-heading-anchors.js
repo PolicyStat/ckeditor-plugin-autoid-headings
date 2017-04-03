@@ -110,10 +110,19 @@ describe("addHeadingAnchors", function () {
       Array.prototype.forEach.call(this.clipboardAnchors, clickAndAssertScrollUnchanged);
     });
 
+    it("calls the custom callback param after clicking on links", function () {
+      var expectedCallCount = 6;
+      Array.prototype.forEach.call(this.clipboardAnchors, function (anchor) {
+        anchor.click();
+      });
+
+      this.spy.should.have.been.called.exactly(expectedCallCount);
+
+    });
+
     it("fires the clipboardjs error callback when clicking on links", function (done) {
       var callCount = 0;
       var expectedCallCount = 6;
-      var postCopySpy = this.spy;
 
       Array.prototype.forEach.call(this.clipboardAnchors, function (anchor) {
 
@@ -138,7 +147,6 @@ describe("addHeadingAnchors", function () {
           // If we somehow don't add all 6 headings,
           // this test will fail because the callback is not fired
           if (callCount === expectedCallCount) {
-            postCopySpy.should.have.been.called.exactly(expectedCallCount);
             done();
           }
         };
