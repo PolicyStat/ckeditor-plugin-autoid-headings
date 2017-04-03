@@ -5,7 +5,7 @@ var addHeadingAnchors = {
   /*eslint-enable no-unused-vars*/
   TOOLTIP_TTL: 500,
 
-  init: function (selector, popoverContainer) {
+  init: function (selector, popoverContainer, postCopyCallback) {
     this.popoverContainer = popoverContainer || "body";
     this.target = document.querySelector(selector);
     if (this.target) {
@@ -13,6 +13,9 @@ var addHeadingAnchors = {
       this.registerClipboardHandlers();
       this.registerDismissPopoverHandler();
       this.registerJumpPreventer();
+      if (typeof postCopyCallback === "function") {
+        this.registerPostCopy(postCopyCallback);
+      }
     }
   },
 
@@ -143,6 +146,9 @@ var addHeadingAnchors = {
         window.location.hash = hash;
       }
     });
+  },
 
+  registerPostCopy: function(callback) {
+    $(this.target).find("a.headerLink").click(callback);
   }
 };
