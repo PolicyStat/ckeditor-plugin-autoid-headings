@@ -5,7 +5,7 @@ var addHeadingAnchors = {
   /*eslint-enable no-unused-vars*/
   TOOLTIP_TTL: 500,
 
-  init: function (selector, popoverContainer, postCopyCallback) {
+  init: function (selector, popoverContainer) {
     this.popoverContainer = popoverContainer || "body";
     this.target = document.querySelector(selector);
     if (this.target) {
@@ -13,9 +13,6 @@ var addHeadingAnchors = {
       this.registerClipboardHandlers();
       this.registerDismissPopoverHandler();
       this.registerJumpPreventer();
-      if (typeof postCopyCallback === "function") {
-        this.registerPostCopy(postCopyCallback);
-      }
     }
   },
 
@@ -130,25 +127,6 @@ var addHeadingAnchors = {
         $("a.headerLink").popover("hide");
       }
     });
-  },
-
-  registerJumpPreventer: function () {
-    $(this.target).find("a.headerLink").click(function (e) {
-      var hash = this.getAttribute("href");
-      // this stops the default behaviour, which is to
-      // set the location hash
-      e.preventDefault();
-
-      if (window.history.replaceState) {
-        window.history.replaceState(null, null, hash);
-      } else {
-        // fallback for no history API - this will still jump
-        window.location.hash = hash;
-      }
-    });
-  },
-
-  registerPostCopy: function(callback) {
-    $(this.target).find("a.headerLink").click(callback);
   }
+
 };

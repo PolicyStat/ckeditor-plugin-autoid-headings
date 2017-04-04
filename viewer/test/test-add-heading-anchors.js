@@ -10,10 +10,7 @@ describe("addHeadingAnchors", function () {
   beforeEach(function () {
     fixture.load("heading-fixtures.html");
     this.testcontainer = fixture.el.firstChild;
-
-    // register a spy in order to be able to later test the custom callback functionality
-    this.spy = chai.spy();
-    addHeadingAnchors.init("#testcontainer", "#testcontainer .popovers", this.spy);
+    addHeadingAnchors.init("#testcontainer", "#testcontainer .popovers");
   });
 
 
@@ -112,17 +109,8 @@ describe("addHeadingAnchors", function () {
       Array.prototype.forEach.call(this.clipboardAnchors, clickAndAssertScrollUnchanged);
     });
 
-    it("calls the custom callback param after clicking on links", function () {
-      var expectedCallCount = 6;
-      Array.prototype.forEach.call(this.clipboardAnchors, function (anchor) {
-        anchor.click();
-      });
-
-      this.spy.should.have.been.called.exactly(expectedCallCount);
-
-    });
-
     it("fires the clipboardjs error callback when clicking on links", function (done) {
+      // a quick alternative to spying
       var callCount = 0;
       var expectedCallCount = 6;
 
@@ -158,7 +146,6 @@ describe("addHeadingAnchors", function () {
         // click on all the anchors
 
         anchor.click();
-
       });
 
     });
