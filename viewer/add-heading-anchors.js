@@ -86,7 +86,7 @@ var addHeadingAnchors = {
 
   createSuccessTooltip: function (anchor) {
     $(anchor).tooltip({
-      title: "Link Copied!",
+      title: "Direct link to this section copied",
       trigger: "manual"
     });
   },
