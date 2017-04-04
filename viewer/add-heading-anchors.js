@@ -127,6 +127,22 @@ var addHeadingAnchors = {
         $("a.headerLink").popover("hide");
       }
     });
-  }
+  },
 
+  registerJumpPreventer: function () {
+    $(this.target).find("a.headerLink").click(function (e) {
+      var hash = this.getAttribute("href");
+      // this stops the default behaviour, which is to
+      // set the location hash
+      e.preventDefault();
+
+      if (window.history.replaceState) {
+        window.history.replaceState(null, null, hash);
+      } else {
+        // fallback for no history API - this will still jump
+        window.location.hash = hash;
+      }
+    });
+
+  }
 };
