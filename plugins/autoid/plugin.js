@@ -87,19 +87,19 @@
         editor.fire(EVENT_NAMES.ID_ADDED);
       }
 
-      function createAutoId() {
-        // adapted from http://fiznool.com/blog/2014/11/16/short-id-generation-in-javascript/
-        // who did a great job on characters to exclude, etc.
-        var uid;
-        var existingIds = findHeadingIds(findAllHeadings(editor));
-
-        var generateUniqueId = function() {
+      function generateUniqueId() {
           var uniqueId = '';
           for (var i = 0; i < ID_LENGTH; i++) {
             uniqueId += ALPHABET.charAt(Math.floor(Math.random() * ALPHABET.length));
           }
           return uniqueId;
         }
+
+      function createAutoId() {
+        // adapted from http://fiznool.com/blog/2014/11/16/short-id-generation-in-javascript/
+        // who did a great job on characters to exclude, etc.
+        var uid;
+        var existingIds = findHeadingIds(findAllHeadings(editor));
 
         while (!uid) {
           uid = generateUniqueId();
