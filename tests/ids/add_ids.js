@@ -144,7 +144,7 @@
         headingHtml = '<h1>a</h1>',
         startHtml = headingHtml;
 
-      for (var i = 0; i < 10000; i++) {
+      for (var i = 0; i < 1000; i++) {
         startHtml += headingHtml;
       }
 
@@ -164,7 +164,6 @@
           ids.push(currentId);
 
         }
-
 
       });
 
