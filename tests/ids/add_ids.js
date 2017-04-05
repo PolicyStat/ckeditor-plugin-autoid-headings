@@ -157,7 +157,7 @@
         headings = editor.editable().find('h1');
 
         for (var i = 0; i < headings.length; i++) {
-          heading = headings[i];
+          heading = headings.getItem(i);
           assert.isTrue(heading.hasAttribute('id'));
           currentId = heading.getAttribute('id');
           assert.areSame(-1, ids.indexOf(currentId));
