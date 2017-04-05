@@ -134,6 +134,44 @@
       editor.applyStyle(headingStyle);
       heading = editor.editable().findOne('h1');
       assert.areSame('12345', heading.getId());
+    },
+
+    'test mass conversion of headings': function() {
+      var bot = this.editorBot,
+        editor = this.editor,
+        headings,
+        resumeAfter = bender.tools.resumeAfter,
+        headingHtml = '<h1>a</h1>',
+        startHtml = headingHtml;
+
+      for (var i = 0; i < 10000; i++) {
+        startHtml += headingHtml;
+      }
+
+      resumeAfter(editor, 'allIdsComplete', function() {
+        var heading,
+          headings,
+          currentId,
+          ids = [];
+
+        headings = editor.editable().find('h1');
+
+        for (var i = 0; i < headings.length; i++) {
+          heading = headings[i];
+          assert.isTrue(heading.hasAttribute('id'));
+          currentId = heading.getAttribute('id');
+          assert.areSame(-1, ids.indexOf(currentId));
+          ids.push(currentId);
+
+        }
+
+
+      });
+
+      bot.setHtmlWithSelection(startHtml);
+      editor.execCommand('autoid');
+
+      wait();
     }
   });
 })();
