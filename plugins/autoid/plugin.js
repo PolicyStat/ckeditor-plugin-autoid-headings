@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  var ALPHABET = '23456789abdegjkmnpqrvwxyz';
+  var ID_LENGTH = 8;
   var EVENT_NAMES = {
     ALL_IDS_COMPLETE: 'allIdsComplete',
     ID_ADDED: 'idAdded',
@@ -86,7 +88,27 @@
       }
 
       function createAutoId() {
-        return 'autoid-' + CKEDITOR.tools.getUniqueId();
+        // adapted from http://fiznool.com/blog/2014/11/16/short-id-generation-in-javascript/
+        // who did a great job on characters to exclude, etc.
+        var uid;
+        var existingIds = findHeadingIds(findAllHeadings(editor));
+
+        var generateUniqueId = function() {
+          var uniqueId = '';
+          for (var i = 0; i < ID_LENGTH; i++) {
+            uniqueId += ALPHABET.charAt(Math.floor(Math.random() * ALPHABET.length));
+          }
+          return uniqueId;
+        }
+
+        while (!uid) {
+          uid = generateUniqueId();
+          if (existingIds.indexOf(uid) !== -1) {
+            uid = null;
+          }
+        }
+
+        return 'autoid-' + uid;
       }
 
       function addIdIfNewHeading() {
