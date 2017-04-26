@@ -3,7 +3,7 @@
 /*eslint-disable no-unused-vars*/
 var addHeadingAnchors = {
   /*eslint-enable no-unused-vars*/
-  TOOLTIP_TTL: 500,
+  TOOLTIP_TTL: 5000,
 
   init: function (selector, popoverContainer) {
     this.popoverContainer = popoverContainer || "body";
