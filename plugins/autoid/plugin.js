@@ -2,7 +2,7 @@
 
 (function () {
   var ALPHABET = '23456789abdegjkmnpqrvwxyz';
-  var ID_LENGTH = 8;
+  var ID_LENGTH = 5;
   var EVENT_NAMES = {
     ALL_IDS_COMPLETE: 'allIdsComplete',
     ID_ADDED: 'idAdded',
