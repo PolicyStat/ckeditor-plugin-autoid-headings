@@ -111,6 +111,33 @@
       wait();
     },
 
+    'test it will add an id when a paragraph with strong tag within is converted to heading': function() {
+      var bot = this.editorBot,
+        editor = this.editor,
+        paragraph,
+        heading,
+        style = new CKEDITOR.style({ element: 'h1' }),
+        resumeAfter = bender.tools.resumeAfter,
+        startHtml = '<p><strong>This paragraph will be converted^</strong></p>';
+
+      bot.setHtmlWithSelection(startHtml);
+      editor.execCommand('autoid');
+
+      paragraph = editor.editable().findOne('p');
+      assert.isFalse(paragraph.hasAttribute('id'));
+
+      resumeAfter(editor, 'idAdded', function() {
+        heading = editor.editable().findOne('h1');
+
+        assert.isTrue(heading.hasAttribute('id'));
+      });
+
+      // convert the paragraph to a heading
+      editor.applyStyle(style);
+
+      wait();
+    },
+
     'test it will retain the id if a heading is converted to a non-heading and back': function() {
       var bot = this.editorBot,
         editor = this.editor,
