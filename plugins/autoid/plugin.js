@@ -112,8 +112,14 @@
       }
 
       function addIdIfNewHeading() {
-        var element = editor.getSelection().getStartElement();
-        if (isHeading(element) && !element.hasAttribute('id')) {
+        var path = editor.elementPath();
+
+        var evaluator = function(element) {
+          return isHeading(element) && !element.hasAttribute('id');
+        }
+
+        var element = path.contains(evaluator);
+        if (element) {
           addId(element);
         }
       }
