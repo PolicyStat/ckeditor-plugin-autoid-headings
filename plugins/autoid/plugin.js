@@ -243,7 +243,7 @@
 
       function modifiedLinkTypeChanged() {
         var dialog = this.getDialog(),
-          partIds = [ 'urlOptions', 'anchorOptions', 'emailOptions', 'headingOptions' ],
+          partIds = [ 'urlOptions', 'anchorOptions', 'emailOptions', 'telOptions', 'headingOptions' ],
           typeValue = this.getValue(),
           uploadTab = dialog.definition.getContents( 'upload' ),
           uploadInitiallyHidden = uploadTab && uploadTab.hidden;
