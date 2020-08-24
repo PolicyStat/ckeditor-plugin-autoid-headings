@@ -6,10 +6,10 @@ node_js:
   - 10
 
 addons:
+  firefox: "latest"
   chrome: stable
 
 before_script:
-  - 'export CHROME_BIN=chromium-browser'
   - 'export DISPLAY=:99.0'
   - 'sleep 3'
 env:
