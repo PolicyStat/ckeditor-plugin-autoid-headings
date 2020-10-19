@@ -133,15 +133,18 @@
           pastedContentAsHtml = CKEDITOR.htmlParser.fragment.fromHtml(pastedContent),
           pastedElements = pastedContentAsHtml.children,
           writer = new CKEDITOR.htmlParser.basicWriter(),
-          i, element, id, originalHeading;
+          element, id, originalHeading;
 
-        for (i = 0; i < pastedElements.length; i++) {
-          element = pastedElements[i];
+        for (element of pastedElements) {
           if (element.type === CKEDITOR.NODE_ELEMENT) {
-            id = element.attributes.id;
-            originalHeading = checkForDuplicateId(id);
-            if (originalHeading) {
-              element = resolveDuplicateIds(element, originalHeading);
+            for (const filter of ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']) {
+              for (var found of element.find(filter, true)){
+                id = found.attributes.id;
+                originalHeading = checkForDuplicateId(id);
+                if (originalHeading) {
+                  found = resolveDuplicateIds(found, originalHeading);
+                }
+              }
             }
           }
         }
