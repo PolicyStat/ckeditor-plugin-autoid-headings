@@ -8,6 +8,7 @@
     ID_ADDED: 'idAdded',
     ID_RETAINED: 'idRetained'
   };
+  var hTags = new Set(["h1", "h2", "h3", "h4", "h5", "h6"]);
 
   CKEDITOR.plugins.add('autoid', {
     init: function (editor) {
@@ -128,23 +129,38 @@
         return element.is('h1', 'h2', 'h3', 'h4', 'h5', 'h6');
       }
 
+      function getChildrenRecursively(node, found){
+        if (node.name !== undefined && hTags.has(node.name)){
+          found.push(node);
+        }
+        if (node.children === undefined){
+          return
+        }
+        for(var child of node.children){
+          getChildrenRecursively(child, found)
+        }
+      }
+
       function checkPastedContentForHeadings(ev) {
         var pastedContent = ev.data.dataValue,
           pastedContentAsHtml = CKEDITOR.htmlParser.fragment.fromHtml(pastedContent),
           pastedElements = pastedContentAsHtml.children,
           writer = new CKEDITOR.htmlParser.basicWriter(),
-          element, id, originalHeading;
+          i, element, id, originalHeading;
 
-        for (element of pastedElements) {
+        var foundNodes = [];
+        for (i = 0; i < pastedElements.length; i++) {
+          element = pastedElements[i];
+          getChildrenRecursively(element, foundNodes);
+        }
+
+        for (i = 0; i < foundNodes.length; i++) {
+          element = foundNodes[i];
           if (element.type === CKEDITOR.NODE_ELEMENT) {
-            for (const filter of ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']) {
-              for (var found of element.find(filter, true)){
-                id = found.attributes.id;
-                originalHeading = checkForDuplicateId(id);
-                if (originalHeading) {
-                  found = resolveDuplicateIds(found, originalHeading);
-                }
-              }
+            id = element.attributes.id;
+            originalHeading = checkForDuplicateId(id);
+            if (originalHeading) {
+              element = resolveDuplicateIds(element, originalHeading);
             }
           }
         }
