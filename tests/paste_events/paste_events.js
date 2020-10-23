@@ -265,7 +265,7 @@
         headings,
         resumeAfter = bender.tools.resumeAfter,
         headingWithId = '<h1 id="12345">This is a heading</h1>',
-        headingWithTheSameId = '<div><h1 id="67890">This is nested heading with the same id</h1></div>';
+        headingWithTheDifferentId = '<div><h1 id="67890">this is a nested heading with a different id</h1></div>';
 
       bot.setHtmlWithSelection(headingWithId);
 
@@ -282,7 +282,7 @@
         // verify original heading still has same id
         assert.areSame('12345', heading.getAttribute('id'));
 
-        editor.execCommand('paste', headingWithTheSameId);
+        editor.execCommand('paste', headingWithTheDifferentId);
 
         headings = editor.editable().find('h1');
 
