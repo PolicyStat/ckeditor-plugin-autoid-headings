@@ -134,10 +134,10 @@
           found.push(node);
         }
         if (node.children === undefined){
-          return
+          return;
         }
         for(var child of node.children){
-          getChildrenRecursively(child, found)
+          getChildrenRecursively(child, found);
         }
       }
 
