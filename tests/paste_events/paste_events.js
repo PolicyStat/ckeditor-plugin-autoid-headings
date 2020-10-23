@@ -215,7 +215,90 @@
 
       // wait for initial id assignment for all headings to complete
       wait();
-    }
+    },
+
+    'test nested duplicated ids got resolved': function() {
+      var bot = this.editorBot,
+        editor = bot.editor,
+        heading,
+        headings,
+        resumeAfter = bender.tools.resumeAfter,
+        headingWithId = '<h1 id="12345">This is a heading</h1>',
+        headingWithTheSameId = '<div><h1 id="12345">This is nested heading with the same id</h1></div>';
+
+      bot.setHtmlWithSelection(headingWithId);
+
+      // hit enter key to prevent pasting text in same heading element
+      editor.editable().fire('keydown', new CKEDITOR.dom.event({
+        keyCode: 13,
+        ctrlKey: false,
+        shiftKey: false
+      }));
+
+      resumeAfter(editor, 'allIdsComplete', function() {
+        heading = editor.editable().findOne('h1');
+
+        // verify original heading still has same id
+        assert.areSame('12345', heading.getAttribute('id'));
+
+        editor.execCommand('paste', headingWithTheSameId);
+
+        headings = editor.editable().find('h1');
+
+        // verify pasted heading id is regenerated
+        assert.areNotSame('12345', headings.getItem(0).getAttribute('id'));
+
+        // verify original heading has the same id
+        assert.areSame('12345', headings.getItem(1).getAttribute('id'));
+      });
+
+      editor.execCommand('autoid');
+
+      // wait for initial id assignment for all headings to complete
+      wait();
+    },
+
+    'test nested unique id is not regenerated': function() {
+      var bot = this.editorBot,
+        editor = bot.editor,
+        heading,
+        headings,
+        resumeAfter = bender.tools.resumeAfter,
+        headingWithId = '<h1 id="12345">This is a heading</h1>',
+        headingWithTheSameId = '<div><h1 id="67890">This is nested heading with the same id</h1></div>';
+
+      bot.setHtmlWithSelection(headingWithId);
+
+      // hit enter key to prevent pasting text in same heading element
+      editor.editable().fire('keydown', new CKEDITOR.dom.event({
+        keyCode: 13,
+        ctrlKey: false,
+        shiftKey: false
+      }));
+
+      resumeAfter(editor, 'allIdsComplete', function() {
+        heading = editor.editable().findOne('h1');
+
+        // verify original heading still has same id
+        assert.areSame('12345', heading.getAttribute('id'));
+
+        editor.execCommand('paste', headingWithTheSameId);
+
+        headings = editor.editable().find('h1');
+
+        // verify pasted heading id is not regenerated
+        assert.areSame('67890', headings.getItem(0).getAttribute('id'));
+
+        // verify original heading has the same id
+        assert.areSame('12345', headings.getItem(1).getAttribute('id'));
+      });
+
+      editor.execCommand('autoid');
+
+      // wait for initial id assignment for all headings to complete
+      wait();
+    },
+
   });
 
 })();
