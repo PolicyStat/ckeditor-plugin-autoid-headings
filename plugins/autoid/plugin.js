@@ -136,8 +136,8 @@
         if (node.children === undefined){
           return;
         }
-        for(var child of node.children){
-          getChildrenRecursively(child, found);
+        for (var i=0; i < node.children.length; i++) {
+          getChildrenRecursively(node.children[i], found);
         }
       }
 
